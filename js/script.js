@@ -87,7 +87,7 @@ let APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
 
 function getSearchResults() {
   const found = fetch(
-    "http://api.giphy.com/v1/gifs/search?q=" +
+    "https://api.giphy.com/v1/gifs/search?q=" +
       charsetSearch +
       "&api_key=" +
       APIKEY +
@@ -155,7 +155,7 @@ function apiTrend() {
   let randomWord = random[randomNumber];
   let qAPI = randomWord;
   const found = fetch(
-    "http://api.giphy.com/v1/gifs/search?q=" +
+    "https://api.giphy.com/v1/gifs/search?q=" +
       qAPI +
       "&api_key=" +
       APIKEY +
