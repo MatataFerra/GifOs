@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gifOS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+
+  <body id="darkThemeBody">
+    <header>
+      <div class="navBar">
+        <div class="tittleBar" id="tittleBar">
+          <p class="pTittle" id="pTittle">
+            ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.//////
+            Número de visitas: 12.765.803
+          </p>
+        </div>
+        <nav class="navigation">
+          <div class="logo">
+            <a href="index.html"><img src="./assets/gifOF_logo.png" alt="logo" class="logoPNG" /></a>
+          </div>
+          <div class="options">
+            <div class="createGif" id="createGif">
+              Crear Gif
+              <div class="dottedNav"></div>
+            </div>
+            <div class="chooseTheme" id="chooseTheme">
+              <div class="parrafContainer">
+                Elegir Tema
+                <div class="dottedNav"></div>
+              </div>
+              <div class="arrowDown" id="arrowFunction">
+                <img src="./assets/dropdown.svg" alt="" />
+                <div class="dottedNav"></div>
+              </div>
+            </div>
+            <div class="themeContainer" id="themeContainer">
+              <div class="dayTheme theme" id="dayTheme">Saylor Day</div>
+              <div class="darkTheme theme" id="darkTheme">Saylor Night</div>
+            </div>
+            <div class="myGif" id="myGif">
+              <span class="myGifDarker">Mis GifOS</span>
+              <p class="border"></p>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- Barra de búsqueda -->
+      <section class="searchContainer">
+        <div class="searchBar">
+          <div class="styleBar" id="styleBar">
+            <span class="spanStyleBar">Buscar</span>
+          </div>
+          <div class="searchBox" id="searchBox">
+            <input
+              type="search"
+              id="search"
+              placeholder=""
+              autocomplete="off"
+            />
+            <div class="buttonSearch" id="buttonSearch">
+              <div class="lupa"><img src="./assets/lupa.svg" alt="" /></div>
+              <span class="searchWord">Buscar</span>
+            </div>
+          </div>
+        </div>
+        <div class="displayBoxSearch" id="displayBoxSearch">
+          <div class="boxSearch">
+            Resultado de búsqueda sugerido
+          </div>
+          <div class="boxSearch">
+            Un resultado similar de búsqueda
+          </div>
+          <div class="boxSearch">
+            Y otro más
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main class="main" id="main">
+      <section class="APIResults" id="APIResults">
+        <div class="h1Sugs">
+          <h1 class="mainTittle">Resultados</h1>
+        </div>
+        <div class="containerApi" id="containerApi">
+          <div class="apiGif"></div>
+        </div>
+      </section>
+      <section class="sugerencias" id="sugerencias">
+        <div class="h1Sugs">
+          <h1 class="mainTittle">Hoy te sugerimos</h1>
+        </div>
+        <div class="sugGif" id="sugGif"></div>
+      </section>
+      <section class="tendencias" id="tendencias">
+        <div class="h1Sugs">
+          <h2 class="trendTittle">Tendencias</h2>
+        </div>
+        <div class="gifs">
+          <div class="gifSugerido">GIF</div>
+          <div class="gifSugerido">GIF</div>
+          <div class="gifSugerido">GIF</div>
+          <div class="gifSugerido">GIF</div>
+        </div>
+        <div class="gifs">
+          <div class="gifSugerido">GIF</div>
+          <div class="gifSugerido">GIF</div>
+          <div class="gifSugerido">GIF</div>
+          <div class="gifSugerido">GIF</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>

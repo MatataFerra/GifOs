@@ -1,0 +1,19 @@
+.main {
+    @include contenedor;
+    .sugerencias{
+        margin-top: 36px;
+        .h1Sugs {
+            background: #FFFAFE;
+            border: 1px solid #E6BBE2;
+            box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+            height: 32px;
+
+            .mainTittle {
+                font-size: 14px;
+                font-weight: normal;
+                margin-left: 0.5rem;
+                line-height: 32px;
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+/*Normalizar*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*Variables y Mixin*/
+@mixin contenedor {
+  width: 80%;
+  margin: 0 auto;
+}
+@mixin borderButton($borderSize) {
+  color: #110038;
+  border: $borderSize solid #110038;
+  text-align: center;
+  line-height: 36px;
+}
+
+@mixin flex($justify) {
+  display: flex;
+  justify-content: $justify;
+}
+
+@mixin grid($column) {
+  display: grid;
+  grid-template-columns: $column;
+}
+
+@mixin gridCyR($column, $rows) {
+  display: grid;
+  grid-template-columns: $column;
+  grid-template-rows: $rows;
+}
+
+@mixin dottedNav {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  $height: 33px;
+  width: 97%;
+  border: 1px dotted black;
+  height: $height;
+  line-height: $height;
+}
+
+$fontFamily: "Chakra Petch", sans-serif;
+
+/*Estilos Generales*/
+
+body {
+  font-family: $fontFamily;
+  background: #FFF4FD;
+  color: #110038;
+}
+
+
+
+/*Imports*/
+@import "darkTheme";
+@import "header";
+@import "buscar";
+@import "sugerencias";
+@import "buttons";
+@import "tendencias";
+@import "main";
+@import "resultadosApi";

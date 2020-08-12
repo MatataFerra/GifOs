@@ -1,0 +1,65 @@
+.main {
+  @include contenedor;
+  .APIResults {
+    margin-top: 36px;
+    display: none;
+    .h1Sugs {
+      background: #fffafe;
+      border: 1px solid #e6bbe2;
+      box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #80687d;
+      height: 32px;
+
+      .mainTittle {
+        font-size: 14px;
+        font-weight: normal;
+        margin-left: 0.5rem;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .containerApi {
+    display: grid;
+    
+    //grid-template: 1fr / repeat(4, minmax(100px, 1fr));
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-template-rows: auto;
+    grid-auto-flow: row dense;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+.apiGif {
+  width: 100%;
+  padding: 2px;
+  box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #fff;
+  align-items: center;
+  object-fit: cover;
+  object-position: center;
+  align-self: stretch;
+  background-size: 400% 400%;
+  background: linear-gradient(0deg, #f7c9f3 0%, #4180f6 100%);
+  animation: back 1s infinite ease-in-out;
+  
+}
+
+.apiGif-1{
+  grid-column: span 2;
+}
+
+.apiGif-2{
+  grid-row: span 2;
+}
+
+@keyframes back{
+  0% {
+
+    background: linear-gradient(0deg, #f7c9f3 100%, #4180f6 0%);
+  }
+
+  100%{
+    background: linear-gradient(360deg,  #f7c9f3 100%, #4180f6 0%);
+  }
+}
+

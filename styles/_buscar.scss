@@ -1,0 +1,157 @@
+.searchContainer {
+  transition: all 1s ease-in-out;
+}
+
+.searchBar {
+  @include contenedor;
+  //background-color: #E6E6E6;
+
+  .styleBar {
+    background-image: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
+    height: 24px;
+    line-height: 24px;
+    
+  }
+
+  .spanStyleBar {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 0.3rem;
+  }
+
+  #search {
+    width: 100%;
+    height: 48px;
+    padding: 0.5rem;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+    font-family: $fontFamily;
+    font-size: 16px;
+  }
+
+  .searchBox {
+    height: 72px;
+    @include grid(85% 15%);
+    align-items: center;
+    justify-items: center;
+    padding: 0.7rem;
+    background: #e6e6e6;
+    box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+    cursor: pointer;
+    
+  }
+}
+
+.buttonSearch {
+  background: #e6e6e6;
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+  @include flex(space-evenly);
+  align-items: center;
+  height: 36px;
+  width: 102px;
+  margin: 0 0 0 8px;
+  color: #b4b4b4;
+  user-select: none;
+  
+  
+
+  .searchWord {
+    line-height: 36px;
+  }
+
+  .lupa {
+    height: 16px;
+    user-select: none;
+    img {
+      line-height: 36px;
+    }
+  }
+}
+
+.buttonHoverColor {
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+  @include flex(space-evenly);
+  align-items: center;
+  height: 36px;
+  width: 102px;
+  margin: 0 0 0 8px;
+  color: #b4b4b4;
+  user-select: none;
+  background: #f7c9f3;
+  //transition: all ease 0.3s;
+  position: relative;
+  
+  &:hover {
+    background-color: #e6bbe2;
+    outline: 1px dotted #110038;
+    outline-offset: -4px;
+    
+  }
+
+  .dottedSearch {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    $height: 34px;
+    width: 97%;
+    
+    height: $height;
+    line-height: $height;
+    
+    
+  }
+
+  .searchWord {
+    line-height: 36px;
+    
+  }
+
+  .lupa {
+    height: 16px;
+    user-select: none;
+    img {
+      line-height: 36px;
+    }
+  }
+
+}
+
+.searchWordHover {
+  color: #110038 !important;
+  transition: all ease 0.3s;
+}
+
+.displayBoxSearch {
+  @include contenedor;
+  background: #e6e6e6;
+  box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+  height: 160px;
+  padding: 0.8rem;
+  display: none;
+  transition: display ease-in-out 0.5s;
+}
+
+.boxSearch {
+  background: transparent;
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+  height: 36px;
+  width: 85%;
+  margin-bottom: 11px;
+  line-height: 36px;
+  padding: 0 0.3rem 0 0.3rem;
+  cursor: pointer;
+  &:hover {
+    outline: 1px dotted #110038;
+    outline-offset: -4px;
+    background: #dbdbdb;
+    border: 1px dotted #808080;
+    box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+  }
+ 
+}
+
+

@@ -1,0 +1,127 @@
+
+
+.navBar {
+  .navigation {
+    @include contenedor;
+    @include flex(space-between);
+    padding: 2.18rem 0 1rem 0;
+
+    .options {
+      @include grid(144px auto 80px);
+      align-items: center;
+      gap: 0 16px;
+
+      .createGif {
+        @include borderButton(1px);
+        box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #ffffff;
+        cursor: pointer;
+        background-color: #f7c9f3;
+        user-select: none;
+        position: relative;
+        &:active {
+          background: #e6bbe2;
+          border: 1px dotted #110038;
+        }
+
+        &:hover .dottedNav{
+          @include dottedNav;
+        }
+
+       &:hover {
+         background: #e6bbe2;
+         border: 1px dotted #110038;
+       }
+
+        
+      }
+
+      .chooseTheme {
+        @include borderButton(0.1px);
+        display: grid;
+        width: calc(131px + 36px);
+        grid-template-columns: 131px 36px;
+        margin-right: 0;
+        background-color: #f7c9f3;
+        box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #ffffff;
+
+        &:active {
+          background: #e6bbe2;
+          border: 1px dotted #110038;
+        }
+        &:hover .dottedNav{
+          @include dottedNav;
+        }
+
+        &:hover {
+          background: #e6bbe2;
+          border: 0.1px dotted #110038;
+        }
+      }
+
+      .parrafContainer {
+        width: 131px;
+        user-select: none;
+        //border: 0.1px solid #110038;
+        box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #ffffff;
+        height: 36px;
+        position: relative;
+
+        
+      }
+
+      .arrowDown {
+        //border: 1px solid #110038;
+        width: 36px;
+        justify-self: flex-end;
+        cursor: pointer;
+        user-select: none;
+        box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #ffffff;
+        height: 36px;
+        position: relative;
+        
+      }
+    }
+
+    .myGif {
+      max-width: 78px;
+      border: 0.1px dotted transparent;
+      
+
+      &:hover {
+        border: 0.1px dotted #110038;
+        
+      }
+
+      span {
+        color: #110038;
+        font-size: 16px;
+      border: none;
+      background-color: transparent;
+      line-height: normal;
+      box-shadow: none;
+      text-align: start;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.1rem;
+      
+      }
+
+      .border {
+        width: 7px;
+        box-shadow: none;
+        border: 0.5px black solid;
+        text-align: start;
+      
+        
+      }
+    }
+
+    .themeContainer {
+      .dayTheme,
+      .darkTheme {
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+  }
+}

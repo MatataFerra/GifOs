@@ -1,0 +1,7 @@
+.tendencias{
+    @extend .sugerencias;
+
+    .trendTittle {
+        @extend .mainTittle;
+    }
+}

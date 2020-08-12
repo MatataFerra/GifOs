@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="flyout" id="flyout-example">
+        <h5 class="flyout-title">This could be a flyout&hellip;</h5>
+        <div class="flyout-debug" id="flyout-debug"></div>
+        <div class="flyout-buttons">
+            <button class="button button-outline" type="button">Cancel</button>
+            <button class="button" type="button">Ok</button>
+        </div>
+    </div>
+
+    <script>
+        debugger;
+        document.addEventListener("click", (evt) => {
+    const flyoutElement = document.getElementById("flyout-example");
+    let targetElement = evt.target; // clicked element
+
+    do {
+        if (targetElement == flyoutElement) {
+            // This is a click inside. Do nothing, just return.
+            document.getElementById("flyout-debug").textContent = "Clicked inside!";
+            return;
+        }
+        // Go up the DOM
+        targetElement = targetElement.parentNode;
+    } while (targetElement);
+
+    // This is a click outside.
+    document.getElementById("flyout-debug").textContent = "Clicked outside!";
+});
+    </script>
+</body>
+</html>
