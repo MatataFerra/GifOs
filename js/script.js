@@ -77,13 +77,11 @@ document.addEventListener("click", () => {
   
 });
 
-//----Extrayendo la palabra ingresada en el input---//
-
 //----Solicitando a la API que busque la palabra---//
 
 buttonSearch.addEventListener("click", getSearchResults);
 
-let APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
+const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
 
 function getSearchResults() {
   const found = fetch(
@@ -115,27 +113,23 @@ function getSearchResults() {
         }
 
         let gifapi = document.getElementsByClassName('apiGif');
-      for(i = 5; i <= gifapi.length; i++){
-        if(i % 2 != 0){
-          gifapi[i].classList.add("apiGif-1");
-        } 
+        for(i = 5; i <= gifapi.length; i++){
+          if(i % 2 != 0){
+            gifapi[i].classList.add("apiGif-1");
+          } 
+        }
       }
-      }
-      
-
-      
     })
     .catch((error) => {
       console.log(error);
       return error;
     });
-
   return found;
 }
 
 //----FIN Solicitando a la API que busque la palabra---//
-//-----------------API Trend--------------//
-function apiTrend() {
+//-----------------API sug--------------//
+function apiSug() {
   let random = [
     "riquelme",
     "today",
@@ -219,10 +213,80 @@ function apiTrend() {
   return found;
 }
 
-apiTrend();
+apiSug();
 
+//-----------------FIN API sug--------------//
+//---------------------------API Trend-------------------------//
+
+function apiTrend() {
+  const found = fetch(
+    "https://api.giphy.com/v1/gifs/trending?" +
+      "&api_key=" +
+      APIKEY +
+      "&limit=200"
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((respuesta) => {
+
+      let trendGif = document.getElementById("trendGifs");
+      trendGif.classList.add('trendGifs');
+      console.log(respuesta.data);
+      
+      setTimeout(loopImg, 100);
+
+      function loopImg(){
+        for (let finalGif of respuesta.data) {
+          let apiTrendImg = document.createElement("img");
+          let trendFootImg = document.createElement('div');
+          let trendConteiner = document.createElement('div')
+
+          trendConteiner.classList.add('trendConteiner')
+          trendFootImg.classList.add('trendFootImg');
+          apiTrendImg.classList.add("apiTrend");
+
+          apiTrendImg.src = finalGif.images.original.url;
+          trendFootImg.innerText = finalGif.title;
+
+          let splitGif = finalGif.title.split(' ');
+          splitGif[0].innerText = "#"
+          console.log(splitGif[0])
+          // for(i = 0; i > splitGif.length; i++){
+          //   splitGif[i].split('')[0].innerText = "#";
+          //   console.log(i)
+          // }
+
+          trendConteiner.appendChild(trendFootImg)
+          trendConteiner.appendChild(apiTrendImg);
+          trendGif.appendChild(trendConteiner)
+
+        }
+
+        
+
+        
+
+        //Creando Grids
+        let trendConteiner = document.getElementsByClassName('trendConteiner');
+        for(i = 3; i <= trendConteiner.length; i++){
+          if(i % 2 != 0){
+            trendConteiner[i].classList.add("apiGif-1");
+          } 
+        }
+        
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+  
+  return found;
+}
+
+apiTrend()
 //-----------------FIN API Trend--------------//
-
 //------------------------------FIN Search Button--------------------------------------//
 //-------------------------------Dark Theme--------------------------------------//
 

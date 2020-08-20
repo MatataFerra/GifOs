@@ -926,10 +926,6 @@ body {
   grid-column: span 2;
 }
 
-.apiGif-2 {
-  grid-row: span 2;
-}
-
 @-webkit-keyframes back {
   0% {
     background: -webkit-gradient(linear, left bottom, left top, color-stop(100%, #f7c9f3), color-stop(0%, #4180f6));
@@ -950,5 +946,78 @@ body {
     background: -webkit-gradient(linear, left bottom, left top, color-stop(100%, #f7c9f3), color-stop(0%, #4180f6));
     background: linear-gradient(360deg, #f7c9f3 100%, #4180f6 0%);
   }
+}
+
+.trendGifs {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(100px, 1fr))[5];
+      grid-template-columns: repeat(5, minmax(100px, 1fr));
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  grid-auto-flow: row dense;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.trendConteiner {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "img";
+}
+
+.trendConteiner:hover {
+  outline: 1.5px dotted #110038;
+  outline-offset: -3px;
+}
+
+.trendConteiner:hover .trendFootImg {
+  visibility: visible;
+}
+
+.apiTrend {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: img;
+  width: 100%;
+  padding: 2px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  background-size: 400% 400%;
+  background: -webkit-gradient(linear, left bottom, left top, from(#f7c9f3), to(#4180f6));
+  background: linear-gradient(0deg, #f7c9f3 0%, #4180f6 100%);
+  -webkit-animation: back 1s infinite ease-in-out;
+          animation: back 1s infinite ease-in-out;
+  -webkit-box-shadow: inset -2px -2px 2px 2px #585858, inset 2px 2px 0 0 #888787;
+          box-shadow: inset -2px -2px 2px 2px #585858, inset 2px 2px 0 0 #888787;
+  z-index: -1;
+}
+
+.trendFootImg {
+  height: 25px;
+  width: 100%;
+  background: -webkit-gradient(linear, right top, left top, from(#f7c9f3), to(#4180f6));
+  background: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: img;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  visibility: hidden;
+  -webkit-transition: visibility .1s ease-in-out;
+  transition: visibility .1s ease-in-out;
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 0.3rem;
+  color: #fff;
+  overflow: hidden;
 }
 /*# sourceMappingURL=styles.css.map */
