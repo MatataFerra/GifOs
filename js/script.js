@@ -1,20 +1,21 @@
 //-------------------------------VARIABLES GLOBALES-------------------------------///
-let arrow = document.getElementById("arrowFunction");
-let cambiarContenidoInput = document.getElementById("search");
-let buttonSearch = document.getElementById("buttonSearch");
-let inputSearch = document.getElementById("search");
+const arrow = document.getElementById("arrowFunction");
+const cambiarContenidoInput = document.getElementById("search");
+const buttonSearch = document.getElementById("buttonSearch");
+const inputSearch = document.getElementById("search");
 let searchBox = document.querySelector(".searchBox");
 let searchMenu = document.querySelector(".displayBoxSearch");
 let searchContainer = document.querySelector(".searchContainer");
+let searchWord = document.querySelector(".searchWord");
 let charsetSearch = "";
 //IDs del main
-let sugerencias = document.getElementById("sugerencias");
-let tendencias = document.getElementById("tendencias");
-let apiResults = document.getElementById("APIResults");
+const sugerencias = document.getElementById("sugerencias");
+const tendencias = document.getElementById("tendencias");
+const apiResults = document.getElementById("APIResults");
 //ID para Cambiar de Temas
-let darkTheme = document.getElementById("darkTheme");
-let dayTheme = document.getElementById("dayTheme");
-let themeContainer = document.getElementById("themeContainer");
+const darkTheme = document.getElementById("darkTheme");
+const dayTheme = document.getElementById("dayTheme");
+const themeContainer = document.getElementById("themeContainer");
 //Variable para cambiar de tema están dentro de Dark y Day Theme del HTML
 let theme = document.querySelectorAll(".theme");
 //-------------------------------FIN VARIABLES GLOBALES-------------------------------///
@@ -50,40 +51,29 @@ document.addEventListener("click", function (e) {
 
 inputSearch.addEventListener("keyup", () => {
   charsetSearch = inputSearch.value.trim();
-  console.log("en el keyUP son: " + charsetSearch);
-  let searchWord = document.querySelector(".searchWord");
   buttonSearch.classList.replace("buttonSearch", "buttonHoverColor");
   searchWord.classList.add("searchWordHover");
   searchMenu.style.display = "block";
-  sugerencias.style.display = "none";
-  tendencias.style.display = "none";
-});
-
-
-
-document.addEventListener("click", () => {
-  
-  charsetSearch = "";
-  console.log("en el 2do evento son: " + charsetSearch);
-  let searchWord = document.querySelector(".searchWord");
-  buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
-  searchWord.classList.remove("searchWordHover");
-  searchMenu.style.display = "none";
-  setTimeout(() => {
-    sugerencias.style.display = "block";
-    tendencias.style.display = "block";
-  }, 100);
-  
-  
+  if(buttonSearch.classList.contains('buttonHoverColor') &&  charsetSearch != ""){
+    buttonSearch.addEventListener("click", getSearchResults);
+  } else {
+    buttonSearch.removeEventListener("click", getSearchResults);
+    
+  }
 });
 
 //----Solicitando a la API que busque la palabra---//
 
-buttonSearch.addEventListener("click", getSearchResults);
-
 const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
 
 function getSearchResults() {
+  
+  let lupa = document.querySelector('.lupa');
+  lupa.style.display = "none";
+  searchWord.innerText = "Reset"
+  sugerencias.style.display = "none";
+  tendencias.style.display = "none";
+  
   const found = fetch(
     "https://api.giphy.com/v1/gifs/search?q=" +
       charsetSearch +
@@ -97,7 +87,6 @@ function getSearchResults() {
     .then((respuesta) => {
       apiResults.style.display="block"
       let containerApi = document.getElementById("containerApi");
-      console.log(respuesta.data);
 
       while (containerApi.hasChildNodes()) {
         containerApi.lastChild.remove();
@@ -124,6 +113,26 @@ function getSearchResults() {
       console.log(error);
       return error;
     });
+    buttonSearch.removeEventListener('click', getSearchResults);
+    buttonSearch.addEventListener("click", byeByeGetSearch);
+    function byeByeGetSearch () {
+      APIResults.style.display = "none";
+      charsetSearch = ""
+      inputSearch.value = "";
+      let lupa = document.querySelector('.lupa');
+      buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
+      searchWord.classList.remove("searchWordHover");
+      searchMenu.style.display = "none";
+      lupa.style.display = "block";
+      searchWord.innerText = "Buscar"
+      setTimeout(() => {
+        sugerencias.style.display = "block";
+        tendencias.style.display = "block";
+        buttonSearch.removeEventListener('click', byeByeGetSearch);
+        
+      }, 100);
+      
+    };
   return found;
 }
 
@@ -133,17 +142,16 @@ function apiSug() {
   let random = [
     "riquelme",
     "today",
-    "trend",
-    "trending",
     "hoy",
     "funny",
     "hilarious",
-    "trending-gifs",
     "most-popular",
     "star-wars",
     "dog-style",
     "donlad-trump",
     "simpsons",
+    "IT",
+    "COVID-19"
   ];
   let randomNumber = Math.floor(Math.random() * random.length);
   let randomWord = random[randomNumber];
@@ -159,7 +167,6 @@ function apiSug() {
       return response.json();
     })
     .then((respuesta) => {
-      console.log(respuesta);
       let sugGif = document.getElementById("sugGif");
 
       for (let finalGif of respuesta.data) {
@@ -219,11 +226,13 @@ apiSug();
 //---------------------------API Trend-------------------------//
 
 function apiTrend() {
+  let limit = 105;
   const found = fetch(
     "https://api.giphy.com/v1/gifs/trending?" +
       "&api_key=" +
       APIKEY +
-      "&limit=200"
+      "&limit="+ 
+      limit
   )
     .then((response) => {
       return response.json();
@@ -232,7 +241,6 @@ function apiTrend() {
 
       let trendGif = document.getElementById("trendGifs");
       trendGif.classList.add('trendGifs');
-      console.log(respuesta.data);
       
       setTimeout(loopImg, 100);
 
@@ -247,15 +255,14 @@ function apiTrend() {
           apiTrendImg.classList.add("apiTrend");
 
           apiTrendImg.src = finalGif.images.original.url;
-          trendFootImg.innerText = finalGif.title;
+          
+          let trendTitle = finalGif.title.split(" ");
+          let hashtag = "";
 
-          let splitGif = finalGif.title.split(' ');
-          splitGif[0].innerText = "#"
-          console.log(splitGif[0])
-          // for(i = 0; i > splitGif.length; i++){
-          //   splitGif[i].split('')[0].innerText = "#";
-          //   console.log(i)
-          // }
+          trendTitle.forEach(word => {
+            hashtag += `#${word} `;
+          });
+          trendFootImg.innerText = hashtag;
 
           trendConteiner.appendChild(trendFootImg)
           trendConteiner.appendChild(apiTrendImg);
@@ -298,7 +305,6 @@ function darkThemeON(e) {
   document.getElementById("darkThemeBody");
   e.preventDefault();
   let themeClick = e.target;
-  console.log(themeClick);
   //Barras
   let tittleBgBar = document.getElementById("tittleBar");
   let bgSearchBar = document.getElementById("styleBar");
@@ -310,7 +316,7 @@ function darkThemeON(e) {
   let myGifBox = document.getElementById("myGif");
   //Buscar
   let searchBox = document.getElementById("searchBox");
-  let searchWord = document.querySelector(".searchWord");
+
   let logo = document.querySelector(".logoPNG");
   let buttonSearch = document.getElementById("buttonSearch");
   //Caja de búsqueda en display none
