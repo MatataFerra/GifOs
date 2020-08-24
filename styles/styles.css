@@ -523,14 +523,13 @@ body {
   background: #e6e6e6;
   -webkit-box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
           box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
-  height: 160px;
   padding: 0.8rem;
   display: none;
   -webkit-transition: display ease-in-out 0.5s;
   transition: display ease-in-out 0.5s;
 }
 
-.boxSearch {
+.boxResults {
   background: transparent;
   border: 1px solid #808080;
   -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
@@ -543,13 +542,52 @@ body {
   cursor: pointer;
 }
 
-.boxSearch:hover {
+.boxResults:hover {
   outline: 1px dotted #110038;
   outline-offset: -4px;
   background: #dbdbdb;
   border: 1px dotted #808080;
   -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
           box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+}
+
+.searchsDone {
+  width: 80%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.searchsDone .blueButtonDone {
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+  background: #4180f6;
+  border: 1px solid #4c2f99;
+  -webkit-box-shadow: inset -2px -2px 0 0 #284f99, inset 2px 2px 0 0 #ffffff;
+          box-shadow: inset -2px -2px 0 0 #284f99, inset 2px 2px 0 0 #ffffff;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.searchsDone .blueButtonDone:hover {
+  outline: 1px dotted #110038;
+  outline-offset: -3px;
+  background: #3a72db;
+}
+
+.searchsDone .viewMoreDone {
+  padding: 0.3rem;
+  width: 100%;
+  overflow: hidden;
+  color: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .main {

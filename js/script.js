@@ -4,7 +4,7 @@ const cambiarContenidoInput = document.getElementById("search");
 const buttonSearch = document.getElementById("buttonSearch");
 const inputSearch = document.getElementById("search");
 let searchBox = document.querySelector(".searchBox");
-let searchMenu = document.querySelector(".displayBoxSearch");
+const displayBoxSearch = document.getElementById("displayBoxSearch");
 let searchContainer = document.querySelector(".searchContainer");
 let searchWord = document.querySelector(".searchWord");
 let charsetSearch = "";
@@ -49,18 +49,73 @@ document.addEventListener("click", function (e) {
 //-------------------------------FIN Desplegar botón con temas--------------------------------------//
 //------------------------------Search Button--------------------------------------//
 
+//--Haciendo que el input guarde la palabra a buscar--//
 inputSearch.addEventListener("keyup", () => {
   charsetSearch = inputSearch.value.trim();
   buttonSearch.classList.replace("buttonSearch", "buttonHoverColor");
   searchWord.classList.add("searchWordHover");
-  searchMenu.style.display = "block";
+  displayBoxSearch.style.display = "block";
+
+  //Agrega ejemplos de búsqueda, al hacer click debería buscarlos
+  while (displayBoxSearch.hasChildNodes()) {
+    displayBoxSearch.lastChild.remove();
+  }
+
+  if(charsetSearch.length > 1) {
+    sugSearch ()
+
+  }
+
   if(buttonSearch.classList.contains('buttonHoverColor') &&  charsetSearch != ""){
     buttonSearch.addEventListener("click", getSearchResults);
   } else {
     buttonSearch.removeEventListener("click", getSearchResults);
+    displayBoxSearch.style.display = "none";
     
   }
 });
+
+//-- FIN Haciendo que el input guarde la palabra a buscar--//
+
+//--creacndo sugerencias de búsquedas--//
+
+function sugSearch () {
+  const found = fetch(
+    `https://api.giphy.com/v1/tags/related/${charsetSearch}?`+
+      "&api_key=" +
+      APIKEY
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((respuesta) => {
+
+      while (displayBoxSearch.hasChildNodes()) {
+        displayBoxSearch.lastChild.remove();
+      }
+
+        for(let i = 0; i < 5 ;i++){
+          let boxResults = document.createElement("div");
+          boxResults.classList.add('boxResults')
+          boxResults.innerText = respuesta.data[i].name
+          displayBoxSearch.appendChild(boxResults);
+          boxResults.addEventListener("click", ()=>{
+            inputSearch.value = respuesta.data[i].name
+            charsetSearch = respuesta.data[i].name
+            getSearchResults()
+          })
+        }
+      
+  })
+
+  .catch((error) => {
+    console.log(error);
+    return error;
+  });
+
+  return found
+}
+//--FIN creacndo sugerencias de búsquedas--//
 
 //----Solicitando a la API que busque la palabra---//
 
@@ -73,13 +128,34 @@ function getSearchResults() {
   searchWord.innerText = "Reset"
   sugerencias.style.display = "none";
   tendencias.style.display = "none";
+  displayBoxSearch.style.display = "none"
+
+  //--Guardar palabra y crear botón--//
+let searchArray = []
+searchArray.push(charsetSearch);
+
+const searchsDone = document.getElementById('searchsDone')
+
+  searchArray.forEach( createButton =>{
+    
+    let blueButtonDone = document.createElement('div')
+    blueButtonDone.classList.add("blueButtonDone");
+    let viewMoreDone = document.createElement('div')
+    viewMoreDone.classList.add('viewMoreDone');
+    viewMoreDone.innerText = createButton;
+    blueButtonDone.appendChild(viewMoreDone)
+    searchsDone.appendChild(blueButtonDone)
+
+  })
+
+//--FIN Guardar palabra y crear botón--//
   
   const found = fetch(
     "https://api.giphy.com/v1/gifs/search?q=" +
       charsetSearch +
       "&api_key=" +
       APIKEY +
-      "&limit=100"
+      "&limit=10"
   )
     .then((response) => {
       return response.json();
@@ -91,7 +167,8 @@ function getSearchResults() {
       while (containerApi.hasChildNodes()) {
         containerApi.lastChild.remove();
       }
-      setTimeout(loopImg, 100);
+
+      loopImg()
 
       function loopImg(){
         for (let finalGif of respuesta.data) {
@@ -102,7 +179,7 @@ function getSearchResults() {
         }
 
         let gifapi = document.getElementsByClassName('apiGif');
-        for(i = 5; i <= gifapi.length; i++){
+        for(i = 5; i < gifapi.length; i++){
           if(i % 2 != 0){
             gifapi[i].classList.add("apiGif-1");
           } 
@@ -122,15 +199,15 @@ function getSearchResults() {
       let lupa = document.querySelector('.lupa');
       buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
       searchWord.classList.remove("searchWordHover");
-      searchMenu.style.display = "none";
+      displayBoxSearch.style.display = "none";
       lupa.style.display = "block";
       searchWord.innerText = "Buscar"
-      setTimeout(() => {
+      // setTimeout(() => {
         sugerencias.style.display = "block";
         tendencias.style.display = "block";
         buttonSearch.removeEventListener('click', byeByeGetSearch);
         
-      }, 100);
+      // }, 100);
       
     };
   return found;
@@ -226,7 +303,7 @@ apiSug();
 //---------------------------API Trend-------------------------//
 
 function apiTrend() {
-  let limit = 105;
+  let limit = 25;
   const found = fetch(
     "https://api.giphy.com/v1/gifs/trending?" +
       "&api_key=" +
@@ -240,9 +317,8 @@ function apiTrend() {
     .then((respuesta) => {
 
       let trendGif = document.getElementById("trendGifs");
-      trendGif.classList.add('trendGifs');
-      
-      setTimeout(loopImg, 100);
+      trendGif.classList.add('trendGifs');    
+      loopImg()
 
       function loopImg(){
         for (let finalGif of respuesta.data) {
@@ -270,16 +346,13 @@ function apiTrend() {
 
         }
 
-        
-
-        
-
         //Creando Grids
         let trendConteiner = document.getElementsByClassName('trendConteiner');
-        for(i = 3; i <= trendConteiner.length; i++){
+        for(let i = 3; i < trendConteiner.length; i++){
           if(i % 2 != 0){
             trendConteiner[i].classList.add("apiGif-1");
-          } 
+          }
+          
         }
         
       }
