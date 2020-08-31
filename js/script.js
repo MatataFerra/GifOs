@@ -229,31 +229,6 @@ function getSearchResults() {
       return error;
     });
 
-    // if(inputSearch.value.trim() !== ""){
-    //   searchWord.innerText = "Reset"
-    //   buttonSearch.removeEventListener('click', getSearchResults);
-    //   buttonSearch.addEventListener("click", byeByeGetSearch);
-    // } else if(inputSearch.value.length === 0) {
-    //   searchWord.innerText = "Buscar"
-    //   buttonSearch.addEventListener('click', getSearchResults);
-    //   buttonSearch.removeEventListener("click", byeByeGetSearch);
-    // }
-
-    // function byeByeGetSearch () {
-    //   APIResults.style.display = "none";
-    //   charsetSearch = ""
-    //   inputSearch.value = "";
-    //   let lupa = document.querySelector('.lupa');
-    //   buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
-    //   searchWord.classList.remove("searchWordHover");
-    //   displayBoxSearch.style.display = "none";
-    //   lupa.style.display = "block";
-    //   searchWord.innerText = "Buscar"
-    //   sugerencias.style.display = "block";
-    //   tendencias.style.display = "block";
-    //   buttonSearch.removeEventListener('click', byeByeGetSearch);
-      
-    // };
   return found;
 }
 
