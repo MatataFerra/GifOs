@@ -3,8 +3,7 @@
 }
 
 .searchBar {
-  @include contenedor;
-  //background-color: #E6E6E6;
+  
 
   .styleBar {
     background-image: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
@@ -125,7 +124,6 @@
 }
 
 .displayBoxSearch {
-  @include contenedor;
   background: #e6e6e6;
   box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
   padding: 0.8rem;
@@ -157,7 +155,6 @@
 //Botón aparece cuando hacemos la búsqueda
 
 .searchsDone{
-  @include contenedor;
   display: flex;
   flex-wrap: wrap;
   margin-top: 0.5rem;
@@ -170,6 +167,7 @@
     box-shadow: inset -2px -2px 0 0 #284f99, inset 2px 2px 0 0 #ffffff;
     cursor: pointer;
     margin-right: 0.5rem;
+    margin-top: 0.5rem;
   
     &:hover {
       outline: 1px dotted #110038;

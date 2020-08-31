@@ -51,6 +51,9 @@
           </div>
         </nav>
       </div>
+    </header>
+
+    <main class="main" id="main">
       <!-- Barra de búsqueda -->
       <section class="searchContainer">
         <div class="searchBar">
@@ -61,7 +64,7 @@
             <input
               type="search"
               id="search"
-              placeholder=""
+              placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
               autocomplete="off"
             />
             <div class="buttonSearch" id="buttonSearch">
@@ -73,16 +76,9 @@
         <div class="displayBoxSearch" id="displayBoxSearch">
         </div>
         <div class="searchsDone" id="searchsDone"></div>
-
-        <!-- <div class="searchsDone" id="searchsDone">
-          <div class="blueButtonDone">
-            <div class="viewMoreDone">Búsqueda 1</div>
-          </div>
-        </div> -->
+        <div id="alertMsg"></div>
       </section>
-    </header>
-
-    <main class="main" id="main">
+      <!-- FIN Barra de búsqueda -->
       <section class="APIResults" id="APIResults">
         <div class="h1Sugs">
           <h1 class="mainTittle">Resultados</h1>
@@ -107,5 +103,6 @@
     </main>
 
     <script src="./js/script.js"></script>
+    <script src="./js/dark.js"></script>
   </body>
 </html>

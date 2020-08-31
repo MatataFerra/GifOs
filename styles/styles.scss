@@ -54,7 +54,11 @@ body {
   color: #110038;
 }
 
-
+#alertMsg{
+  display: none;
+  font-size: 1.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 /*Imports*/
 @import "darkTheme";

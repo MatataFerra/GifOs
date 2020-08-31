@@ -1,6 +1,5 @@
 //-------------------------------VARIABLES GLOBALES-------------------------------///
 const arrow = document.getElementById("arrowFunction");
-const cambiarContenidoInput = document.getElementById("search");
 const buttonSearch = document.getElementById("buttonSearch");
 const inputSearch = document.getElementById("search");
 let searchBox = document.querySelector(".searchBox");
@@ -18,13 +17,15 @@ const dayTheme = document.getElementById("dayTheme");
 const themeContainer = document.getElementById("themeContainer");
 //Variable para cambiar de tema están dentro de Dark y Day Theme del HTML
 let theme = document.querySelectorAll(".theme");
-//-------------------------------FIN VARIABLES GLOBALES-------------------------------///
-//Cambiar placeholder//
 
-cambiarContenidoInput.setAttribute(
-  "placeholder",
-  "Busca gifs, hashtags, temas, busca lo que quieras…"
-);
+//Globales para búsquedas realizadas LocalStorage
+const searchsDone = document.getElementById('searchsDone')
+let alertMsg = document.getElementById('alertMsg')
+let searchArray = []
+//-------------------------------FIN VARIABLES GLOBALES-------------------------------///
+
+//localStorage
+loadData()
 
 //-------------------------------Desplegar botón con temas--------------------------------------//
 
@@ -63,10 +64,14 @@ inputSearch.addEventListener("keyup", () => {
 
   if(charsetSearch.length > 1) {
     sugSearch ()
-
   }
 
-  if(buttonSearch.classList.contains('buttonHoverColor') &&  charsetSearch != ""){
+  if(charsetSearch.length === 0){
+    buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
+    searchWord.classList.remove("searchWordHover");
+  }
+
+  if((buttonSearch.classList.contains('buttonHoverColor') || buttonSearch.classList.contains('buttonHoverColorDark')) &&  charsetSearch != ""){
     buttonSearch.addEventListener("click", getSearchResults);
   } else {
     buttonSearch.removeEventListener("click", getSearchResults);
@@ -117,38 +122,72 @@ function sugSearch () {
 }
 //--FIN creacndo sugerencias de búsquedas--//
 
-//----Solicitando a la API que busque la palabra---//
 
+//--Guardar palabra y crear botón--//
+
+function createButtonsFromArray () {
+
+  if(alertMsg.style.display == "block"){
+    alertMsg.innerText = ""
+    alertMsg.style.display = "none"
+  }
+  searchArray.push(charsetSearch);
+  let blueButtonDone = document.createElement('div')
+  blueButtonDone.classList.add("blueButtonDone");
+  let viewMoreDone = document.createElement('div')
+  viewMoreDone.classList.add('viewMoreDone');
+  viewMoreDone.innerText = charsetSearch;
+  blueButtonDone.appendChild(viewMoreDone)
+  searchsDone.appendChild(blueButtonDone)
+ 
+  
+  let saveData = JSON.stringify(searchArray);
+  localStorage.setItem('searchArrayData', saveData);
+
+}
+
+function loadData() {
+
+  if(localStorage.searchArrayData){
+
+    let loadDataArray = JSON.parse(localStorage.getItem('searchArrayData'));
+    searchArray = loadDataArray
+    searchArray.forEach( createButton =>{
+      let blueButtonDone = document.createElement('div')
+      blueButtonDone.classList.add("blueButtonDone");
+      let viewMoreDone = document.createElement('div')
+      viewMoreDone.classList.add('viewMoreDone');
+      viewMoreDone.innerText = createButton;
+      blueButtonDone.appendChild(viewMoreDone)
+      searchsDone.appendChild(blueButtonDone)
+    })
+    if(searchArray.length > 25){
+      let num = searchArray.length;
+      searchArray.splice(0, num)
+      while(searchsDone.hasChildNodes()){
+        searchsDone.lastChild.remove()
+      }
+      localStorage.clear()
+        alertMsg.style.display = "block";
+        alertMsg.innerText = "Superaste el número de búsquedas en tu historial, lo reiniciamos para ahorrarte espacio en tu compu :)";
+    }
+  }
+
+  
+}
+//--FIN Guardar palabra y crear botón--//
+
+//----Solicitando a la API que busque la palabra---//
 const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
 
 function getSearchResults() {
-  
+  createButtonsFromArray ()
   let lupa = document.querySelector('.lupa');
   lupa.style.display = "none";
-  searchWord.innerText = "Reset"
   sugerencias.style.display = "none";
   tendencias.style.display = "none";
   displayBoxSearch.style.display = "none"
-
-  //--Guardar palabra y crear botón--//
-let searchArray = []
-searchArray.push(charsetSearch);
-
-const searchsDone = document.getElementById('searchsDone')
-
-  searchArray.forEach( createButton =>{
-    
-    let blueButtonDone = document.createElement('div')
-    blueButtonDone.classList.add("blueButtonDone");
-    let viewMoreDone = document.createElement('div')
-    viewMoreDone.classList.add('viewMoreDone');
-    viewMoreDone.innerText = createButton;
-    blueButtonDone.appendChild(viewMoreDone)
-    searchsDone.appendChild(blueButtonDone)
-
-  })
-
-//--FIN Guardar palabra y crear botón--//
+  apiResults.style.display="block"
   
   const found = fetch(
     "https://api.giphy.com/v1/gifs/search?q=" +
@@ -161,19 +200,18 @@ const searchsDone = document.getElementById('searchsDone')
       return response.json();
     })
     .then((respuesta) => {
-      apiResults.style.display="block"
       let containerApi = document.getElementById("containerApi");
 
       while (containerApi.hasChildNodes()) {
         containerApi.lastChild.remove();
       }
 
-      loopImg()
-
+      setTimeout(loopImg, 100)
       function loopImg(){
         for (let finalGif of respuesta.data) {
           let gifapi = document.createElement("img");
           gifapi.classList.add("apiGif");
+          gifapi.setAttribute('loading', 'lazy')
           gifapi.src = finalGif.images.original.url;
           containerApi.appendChild(gifapi);
         }
@@ -190,26 +228,32 @@ const searchsDone = document.getElementById('searchsDone')
       console.log(error);
       return error;
     });
-    buttonSearch.removeEventListener('click', getSearchResults);
-    buttonSearch.addEventListener("click", byeByeGetSearch);
-    function byeByeGetSearch () {
-      APIResults.style.display = "none";
-      charsetSearch = ""
-      inputSearch.value = "";
-      let lupa = document.querySelector('.lupa');
-      buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
-      searchWord.classList.remove("searchWordHover");
-      displayBoxSearch.style.display = "none";
-      lupa.style.display = "block";
-      searchWord.innerText = "Buscar"
-      // setTimeout(() => {
-        sugerencias.style.display = "block";
-        tendencias.style.display = "block";
-        buttonSearch.removeEventListener('click', byeByeGetSearch);
-        
-      // }, 100);
+
+    // if(inputSearch.value.trim() !== ""){
+    //   searchWord.innerText = "Reset"
+    //   buttonSearch.removeEventListener('click', getSearchResults);
+    //   buttonSearch.addEventListener("click", byeByeGetSearch);
+    // } else if(inputSearch.value.length === 0) {
+    //   searchWord.innerText = "Buscar"
+    //   buttonSearch.addEventListener('click', getSearchResults);
+    //   buttonSearch.removeEventListener("click", byeByeGetSearch);
+    // }
+
+    // function byeByeGetSearch () {
+    //   APIResults.style.display = "none";
+    //   charsetSearch = ""
+    //   inputSearch.value = "";
+    //   let lupa = document.querySelector('.lupa');
+    //   buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
+    //   searchWord.classList.remove("searchWordHover");
+    //   displayBoxSearch.style.display = "none";
+    //   lupa.style.display = "block";
+    //   searchWord.innerText = "Buscar"
+    //   sugerencias.style.display = "block";
+    //   tendencias.style.display = "block";
+    //   buttonSearch.removeEventListener('click', byeByeGetSearch);
       
-    };
+    // };
   return found;
 }
 
@@ -218,17 +262,16 @@ const searchsDone = document.getElementById('searchsDone')
 function apiSug() {
   let random = [
     "riquelme",
-    "today",
-    "hoy",
-    "funny",
-    "hilarious",
     "most-popular",
     "star-wars",
     "dog-style",
     "donlad-trump",
     "simpsons",
     "IT",
-    "COVID-19"
+    "COVID-19",
+    "snoop-dog",
+    "Lollapalooza",
+    "Jimmy Fallon"
   ];
   let randomNumber = Math.floor(Math.random() * random.length);
   let randomWord = random[randomNumber];
@@ -330,6 +373,8 @@ function apiTrend() {
           trendFootImg.classList.add('trendFootImg');
           apiTrendImg.classList.add("apiTrend");
 
+          apiTrendImg.setAttribute('loading', 'lazy')
+
           apiTrendImg.src = finalGif.images.original.url;
           
           let trendTitle = finalGif.title.split(" ");
@@ -368,90 +413,4 @@ function apiTrend() {
 apiTrend()
 //-----------------FIN API Trend--------------//
 //------------------------------FIN Search Button--------------------------------------//
-//-------------------------------Dark Theme--------------------------------------//
 
-for (let changetheme of theme) {
-  changetheme.addEventListener("click", darkThemeON);
-}
-
-function darkThemeON(e) {
-  document.getElementById("darkThemeBody");
-  e.preventDefault();
-  let themeClick = e.target;
-  //Barras
-  let tittleBgBar = document.getElementById("tittleBar");
-  let bgSearchBar = document.getElementById("styleBar");
-  //Botones
-  let createGif = document.getElementById("createGif");
-  let chooseTheme = document.getElementById("chooseTheme");
-  let borderLine = document.querySelector(".border");
-  let myGif = document.querySelector(".myGifDarker");
-  let myGifBox = document.getElementById("myGif");
-  //Buscar
-  let searchBox = document.getElementById("searchBox");
-
-  let logo = document.querySelector(".logoPNG");
-  let buttonSearch = document.getElementById("buttonSearch");
-  //Caja de búsqueda en display none
-  let displayBoxSearch = document.getElementById("displayBoxSearch");
-
-  if (themeClick === darkTheme) {
-    document.body.classList.add("darkThemeBody");
-    createGif.classList.replace("createGif", "createGifDark");
-    chooseTheme.classList.replace("chooseTheme", "chooseThemeDark");
-    tittleBgBar.classList.replace("tittleBar", "tittleBarDark");
-    bgSearchBar.classList.replace("styleBar", "styleBarDark");
-    searchBox.classList.replace("searchBox", "searchBoxDark");
-    buttonSearch.classList.replace("buttonSearch", "buttonSearchDark");
-    darkTheme.classList.replace("darkTheme", "darkThemeDark");
-    dayTheme.classList.replace("dayTheme", "dayThemeDark");
-    themeContainer.classList.replace("themeContainer", "themeContainerDark");
-    myGifBox.classList.replace("myGif", "myGifDark");
-    searchWord.style.color = "#8F8F8F";
-    logo.setAttribute("src", "./assets/gifOF_logo_dark.png");
-    displayBoxSearch.classList.replace(
-      "displayBoxSearch",
-      "displayBoxSearchDark"
-    );
-    borderLine.style.visibility = "hidden";
-    myGif.style.color = "#fff";
-
-    inputSearch.addEventListener("click", () => {
-      buttonSearch.classList.replace(
-        "buttonSearchDark",
-        "buttonHoverColorDark"
-      );
-    });
-
-    searchContainer.addEventListener("mouseleave", () => {
-      buttonSearch.classList.replace(
-        "buttonHoverColorDark",
-        "buttonSearchDark"
-      );
-    });
-  }
-
-  if (themeClick === dayTheme) {
-    document.body.classList.remove("darkThemeBody");
-    createGif.classList.replace("createGifDark", "createGif");
-    chooseTheme.classList.replace("chooseThemeDark", "chooseTheme");
-    tittleBgBar.classList.replace("tittleBarDark", "tittleBar");
-    bgSearchBar.classList.replace("styleBarDark", "styleBar");
-    searchBox.classList.replace("searchBoxDark", "searchBox");
-    buttonSearch.classList.replace("buttonSearchDark", "buttonSearch");
-    darkTheme.classList.replace("darkThemeDark", "darkTheme");
-    dayTheme.classList.replace("dayThemeDark", "dayTheme");
-    themeContainer.classList.replace("themeContainerDark", "themeContainer");
-    myGifBox.classList.replace("myGifDark", "myGif");
-    searchWord.style.color = "#8F8F8F";
-    logo.setAttribute("src", "./assets/gifOF_logo.png");
-    displayBoxSearch.classList.replace(
-      "displayBoxSearchDark",
-      "displayBoxSearch"
-    );
-    borderLine.style.visibility = "visible";
-    myGif.style.color = "#110038";
-  }
-}
-
-//-------------------------------FIN Dark Theme--------------------------------------//

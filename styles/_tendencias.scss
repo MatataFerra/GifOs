@@ -1,7 +1,62 @@
-.tendencias{
+.tendencias {
     @extend .sugerencias;
 
     .trendTittle {
         @extend .mainTittle;
     }
 }
+
+.trendGifs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-rows: auto;
+    grid-auto-flow: row dense;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
+.trendConteiner {
+    display: grid;
+    grid-template-areas: "img";
+
+    &:hover {
+        outline: 1.5px dotted #110038;
+        outline-offset: -3px;
+    }
+
+    &:hover .trendFootImg {
+        visibility: visible;
+    }
+}
+
+.apiTrend {
+    grid-area: img;
+    width: 100%;
+    padding: 2px;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+    align-self: stretch;
+    background-size: 400% 400%;
+    background: linear-gradient(0deg, #f7c9f3 0%, #4180f6 100%);
+    animation: back 1s infinite ease-in-out;
+    box-shadow: inset -2px -2px 2px 2px #585858, inset 2px 2px 0 0 rgb(136, 135, 135);
+    z-index: -1;
+}
+
+.trendFootImg {
+    height: 25px;
+    width: 100%;
+    background: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
+    grid-area: img;
+    align-self: flex-end;
+    visibility: hidden;
+    transition: visibility .1s ease-in-out;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 0.3rem;
+    color: #fff;
+    overflow: hidden;
+}
+

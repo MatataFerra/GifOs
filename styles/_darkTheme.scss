@@ -94,9 +94,7 @@
 }
 
 .displayBoxSearchDark {
-  @include contenedor;
   box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
-  height: 160px;
   padding: 0.8rem;
   display: none;
   transition: display ease-in-out 0.5s;
@@ -197,4 +195,10 @@
   &:hover {
     border: 0.1px dotted #fff;
   }
+}
+
+//Clase auxiliar
+
+.darkBack{
+  background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%)!important;
 }
