@@ -1,0 +1,152 @@
+.flexCrearGif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .arrowCrearGif {
+        margin-right: 0.5rem;
+    }
+}
+
+.crearGif {
+    width: 684px;
+    height: 386px;
+    margin: 0 auto;
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+
+    .barraCrearGif {
+        background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+        height: 24px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #FFFFFF;
+        padding: 4px;
+    }
+
+    .containerCrearGif {
+        padding: 2rem;
+
+        .iconTitleCrearGif{
+            display: flex;
+            margin-bottom: 1rem;
+    
+            img {
+                margin-right: 1.5rem;
+            }
+    
+            p {
+                font-weight: bold;
+                font-size: 16px;
+                color: #110038;
+            }
+        }
+
+        .listCrearGif {
+            margin-left: 3.5rem;
+            font-size: 14px;
+            color: #110038;
+            p{
+                margin-bottom: 0.5rem;
+            }
+
+            .ulCrearGif {
+                li {
+                    margin-bottom: 0.5rem;
+                    list-style: none;
+                    
+                }
+
+                .dot {
+                    margin-right: 0.4rem;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+
+            .boldCrearGif {
+                font-weight: bold;
+            }
+
+            .italic {
+                font-style: italic;
+            }
+        }
+    }
+
+    .buttonsCrearGif {
+        @include flex(flex-end);
+
+        .cancelarButton{
+            margin-right: 1rem;
+            width: 144px;
+            height: 36px;
+            background: #FFF4FD;
+            border: 1px solid #110038;
+            box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+            text-align: center;
+            line-height: 36px;
+            cursor: pointer;
+            &:hover {
+                outline: 1px dotted #110038;
+                outline-offset: -4px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+        }
+
+        .comenzarButton {
+            margin-right: 3rem;
+            width: 144px;
+            height: 36px;
+            background: #F7C9F3;
+            border: 1px solid #110038;
+            box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+            text-align: center;
+            line-height: 36px;
+            cursor: pointer;
+            &:hover {
+                outline: 1px dotted #110038;
+                outline-offset: -4px;
+            }
+        }
+    }
+    
+}
+
+.misGuifos {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 36px;
+
+    .h1Sugs {
+        background: #fffafe;
+        border: 1px solid #e6bbe2;
+        box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #80687d;
+        height: 32px;
+    }
+
+    .mainTittle {
+        font-size: 14px;
+        font-weight: normal;
+        margin-left: 0.5rem;
+        line-height: 32px;
+    }
+}
+
+#videoObj {
+    margin: 0 auto;
+    display: none;
+}
+
+.buttonsContainer {
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem auto;
+
+}

@@ -20,18 +20,15 @@
         position: relative;
         &:active {
           background: #e6bbe2;
-          border: 1px dotted #110038;
+          outline: 1px dotted #110038;
+          outline-offset: -4px;
         }
 
-        &:hover .dottedNav{
-          @include dottedNav;
+        &:hover {
+          background: #e6bbe2;
+          outline: 1px dotted #110038;
+          outline-offset: -4px;
         }
-
-       &:hover {
-         background: #e6bbe2;
-         border: 1px dotted #110038;
-       }
-
         
       }
 
@@ -46,15 +43,15 @@
 
         &:active {
           background: #e6bbe2;
-          border: 1px dotted #110038;
-        }
-        &:hover .dottedNav{
-          @include dottedNav;
+          outline: 1px dotted #110038;
+          outline-offset: -4px;
         }
 
-        &:hover {
+        &:hover .parrafContainer,
+        &:hover .arrowDown {
           background: #e6bbe2;
-          border: 0.1px dotted #110038;
+          outline: 1px dotted #110038;
+          outline-offset: -4px;
         }
       }
 
@@ -70,7 +67,6 @@
       }
 
       .arrowDown {
-        //border: 1px solid #110038;
         width: 36px;
         justify-self: flex-end;
         cursor: pointer;
@@ -95,14 +91,14 @@
       span {
         color: #110038;
         font-size: 16px;
-      border: none;
-      background-color: transparent;
-      line-height: normal;
-      box-shadow: none;
-      text-align: start;
-      cursor: pointer;
-      user-select: none;
-      padding: 0.1rem;
+        border: none;
+        background-color: transparent;
+        line-height: normal;
+        box-shadow: none;
+        text-align: start;
+        cursor: pointer;
+        user-select: none;
+        padding: 0.1rem;
       
       }
 
@@ -122,6 +118,10 @@
         cursor: pointer;
         user-select: none;
       }
+    }
+
+    .linkGif{
+      text-decoration: none;
     }
   }
 }

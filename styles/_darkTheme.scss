@@ -119,9 +119,7 @@
     outline-offset: -4px;
   }
 
-  &:active .dottedSearch {
-    @include dottedNav;
-  }
+
 
   .searchWord {
     line-height: 36px;

@@ -22,7 +22,11 @@ let theme = document.querySelectorAll(".theme");
 const searchsDone = document.getElementById('searchsDone')
 let alertMsg = document.getElementById('alertMsg')
 let searchArray = []
+
 //-------------------------------FIN VARIABLES GLOBALES-------------------------------///
+
+//crear link
+const myGif = document.getElementById('myGif')
 
 //localStorage
 loadData()
@@ -125,13 +129,20 @@ function sugSearch () {
 
 //--Guardar palabra y crear botón--//
 
+
 function createButtonsFromArray () {
 
   if(alertMsg.style.display == "block"){
     alertMsg.innerText = ""
     alertMsg.style.display = "none"
   }
-  searchArray.push(charsetSearch);
+  if(searchArray.includes(charsetSearch)){
+    return;
+  } else {
+    searchArray.push(charsetSearch);
+  }
+  
+
   let blueButtonDone = document.createElement('div')
   blueButtonDone.classList.add("blueButtonDone");
   let viewMoreDone = document.createElement('div')
@@ -139,17 +150,15 @@ function createButtonsFromArray () {
   viewMoreDone.innerText = charsetSearch;
   blueButtonDone.appendChild(viewMoreDone)
   searchsDone.appendChild(blueButtonDone)
- 
+
   
   let saveData = JSON.stringify(searchArray);
   localStorage.setItem('searchArrayData', saveData);
-
-}
-
+} 
 function loadData() {
 
   if(localStorage.searchArrayData){
-
+    
     let loadDataArray = JSON.parse(localStorage.getItem('searchArrayData'));
     searchArray = loadDataArray
     searchArray.forEach( createButton =>{
@@ -161,6 +170,8 @@ function loadData() {
       blueButtonDone.appendChild(viewMoreDone)
       searchsDone.appendChild(blueButtonDone)
     })
+    
+
     if(searchArray.length > 25){
       let num = searchArray.length;
       searchArray.splice(0, num)
@@ -173,9 +184,16 @@ function loadData() {
     }
   }
 
-  
 }
 //--FIN Guardar palabra y crear botón--//
+let textOnButton = document.getElementsByClassName('viewMoreDone')
+
+searchsDone.addEventListener('click', (e)=>{
+  buttonClick = e.target
+  charsetSearch = buttonClick.innerText
+  inputSearch.value = buttonClick.innerText
+  getSearchResults()
+})
 
 //----Solicitando a la API que busque la palabra---//
 const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";

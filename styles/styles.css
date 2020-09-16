@@ -195,16 +195,6 @@ body {
   outline-offset: -4px;
 }
 
-.buttonHoverColorDark:active .dottedSearch {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 97%;
-  border: 1px dotted black;
-  height: 33px;
-  line-height: 33px;
-}
-
 .buttonHoverColorDark .searchWord {
   line-height: 36px;
   color: #fff !important;
@@ -778,22 +768,14 @@ body {
 
 .navBar .navigation .options .createGif:active {
   background: #e6bbe2;
-  border: 1px dotted #110038;
-}
-
-.navBar .navigation .options .createGif:hover .dottedNav {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 97%;
-  border: 1px dotted black;
-  height: 33px;
-  line-height: 33px;
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
 }
 
 .navBar .navigation .options .createGif:hover {
   background: #e6bbe2;
-  border: 1px dotted #110038;
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
 }
 
 .navBar .navigation .options .chooseTheme {
@@ -814,22 +796,15 @@ body {
 
 .navBar .navigation .options .chooseTheme:active {
   background: #e6bbe2;
-  border: 1px dotted #110038;
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
 }
 
-.navBar .navigation .options .chooseTheme:hover .dottedNav {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 97%;
-  border: 1px dotted black;
-  height: 33px;
-  line-height: 33px;
-}
-
-.navBar .navigation .options .chooseTheme:hover {
+.navBar .navigation .options .chooseTheme:hover .parrafContainer,
+.navBar .navigation .options .chooseTheme:hover .arrowDown {
   background: #e6bbe2;
-  border: 0.1px dotted #110038;
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
 }
 
 .navBar .navigation .options .parrafContainer {
@@ -899,6 +874,10 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.navBar .navigation .linkGif {
+  text-decoration: none;
 }
 
 .trendGifs {
@@ -1057,5 +1036,177 @@ body {
     background: -webkit-gradient(linear, left bottom, left top, color-stop(100%, #f7c9f3), color-stop(0%, #4180f6));
     background: linear-gradient(360deg, #f7c9f3 100%, #4180f6 0%);
   }
+}
+
+.flexCrearGif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flexCrearGif .arrowCrearGif {
+  margin-right: 0.5rem;
+}
+
+.crearGif {
+  width: 684px;
+  height: 386px;
+  margin: 0 auto;
+  background: #E6E6E6;
+  -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+          box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+}
+
+.crearGif .barraCrearGif {
+  background-image: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
+  background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+  height: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+.crearGif .containerCrearGif {
+  padding: 2rem;
+}
+
+.crearGif .containerCrearGif .iconTitleCrearGif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.crearGif .containerCrearGif .iconTitleCrearGif img {
+  margin-right: 1.5rem;
+}
+
+.crearGif .containerCrearGif .iconTitleCrearGif p {
+  font-weight: bold;
+  font-size: 16px;
+  color: #110038;
+}
+
+.crearGif .containerCrearGif .listCrearGif {
+  margin-left: 3.5rem;
+  font-size: 14px;
+  color: #110038;
+}
+
+.crearGif .containerCrearGif .listCrearGif p {
+  margin-bottom: 0.5rem;
+}
+
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif li {
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif .dot {
+  margin-right: 0.4rem;
+}
+
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif:last-child {
+  margin-bottom: 0;
+}
+
+.crearGif .containerCrearGif .listCrearGif .boldCrearGif {
+  font-weight: bold;
+}
+
+.crearGif .containerCrearGif .listCrearGif .italic {
+  font-style: italic;
+}
+
+.crearGif .buttonsCrearGif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.crearGif .buttonsCrearGif .cancelarButton {
+  margin-right: 1rem;
+  width: 144px;
+  height: 36px;
+  background: #FFF4FD;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+}
+
+.crearGif .buttonsCrearGif .cancelarButton:hover {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+.crearGif .buttonsCrearGif .cancelarButton a {
+  text-decoration: none;
+}
+
+.crearGif .buttonsCrearGif .comenzarButton {
+  margin-right: 3rem;
+  width: 144px;
+  height: 36px;
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+}
+
+.crearGif .buttonsCrearGif .comenzarButton:hover {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+.misGuifos {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 36px;
+}
+
+.misGuifos .h1Sugs {
+  background: #fffafe;
+  border: 1px solid #e6bbe2;
+  -webkit-box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #80687d;
+          box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #80687d;
+  height: 32px;
+}
+
+.misGuifos .mainTittle, .misGuifos .tendencias .trendTittle, .tendencias .misGuifos .trendTittle {
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 0.5rem;
+  line-height: 32px;
+}
+
+#videoObj {
+  margin: 0 auto;
+  display: none;
+}
+
+.buttonsContainer {
+  width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 1rem auto;
 }
 /*# sourceMappingURL=styles.css.map */
