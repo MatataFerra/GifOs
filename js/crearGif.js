@@ -14,9 +14,7 @@ class Button {
 
     buttonSelect = (buttonStatus) => {
         try {
-            //let button = document.getElementById(`${id}`)
             this.id.disabled = buttonStatus;
-
 
         } catch (err) {
             console.log(err)
@@ -120,7 +118,6 @@ let resumeRecord = () => {
     }
 }
 
-//FALTA QUE AL HACER CLICK EN START Y ELIMINAR EL VIDEO SE BORRE
 
 let deleteRecord = () => {
     try {

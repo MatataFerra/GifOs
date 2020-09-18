@@ -2,6 +2,77 @@
   background-color: #110038;
 }
 
+.backgroundYLetrasDark{
+  background-image: linear-gradient(270deg, #ee3efe 0%, #2e32fb 100%)!important;
+  box-shadow: 0 1px 0 0 #110038!important;
+  //tittleBar, styleBar, gifResultsFrames, trendFootImgs
+}
+
+.buttonDark{
+  background-color: #ee3efe!important;
+  border: 1px solid #110038!important;
+  box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff!important;
+  color: #fff!important;
+
+  &:active,
+  &:hover {
+    background-color: #CE36DB!important;
+    outline: 1px dotted #110038!important;
+    outline-offset: -4px!important;
+  }
+
+  &:hover .parrafContainer,
+  &:hover .arrowDown {
+    background-color: #CE36DB!important;
+    outline: 1px dotted #110038!important;
+    outline-offset: -4px!important;
+  }
+}
+
+.textDark{
+  color: #fff!important;
+}
+
+.borderDark {
+  border: 0.5px #fff solid!important;
+}
+
+.boxDark {
+  background: #b4b4b4!important;
+  border: 1px solid #808080!important;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff!important;
+
+  //searchBox, buttonSearch, boxResults
+
+  .boxResults:hover {
+    box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+    cursor: pointer;
+    background-color: #b4b4b4;
+  }
+}
+
+.themeSelect {
+  background: #cccccc!important;
+  border: 1px solid #808080!important;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff!important;
+
+  &:hover {
+    background: #2e32fb!important;
+    border: 1px solid rgba(51, 53, 143, 0.2)!important;
+    box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff!important;
+    color: #fff!important;
+  }
+}
+
+//Day y Dark Theme de la flecha desplegable
+
+.searchWordDark {
+  color: #8F8F8F!important;
+}
+
+
+///------------------ NEW DARK ------------------////
+
 .createGifDark {
   @include borderButton(1px);
   cursor: pointer;
@@ -59,9 +130,9 @@
   margin: 0 0 0 8px;
   color: #b4b4b4;
   user-select: none;
-  background: #b4b4b4;
-  border: 1px solid #808080;
-  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+  background: #b4b4b4!important;
+  border: 1px solid #808080!important;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff!important;
   color: #fff;
   .searchWord {
     line-height: 36px;

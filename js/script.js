@@ -2,10 +2,10 @@
 const arrow = document.getElementById("arrowFunction");
 const buttonSearch = document.getElementById("buttonSearch");
 const inputSearch = document.getElementById("search");
-let searchBox = document.querySelector(".searchBox");
+const searchBox = document.getElementById("searchBox");
 const displayBoxSearch = document.getElementById("displayBoxSearch");
-let searchContainer = document.querySelector(".searchContainer");
-let searchWord = document.querySelector(".searchWord");
+const searchContainer = document.querySelector(".searchContainer");
+const searchWord = document.querySelector(".searchWord");
 let charsetSearch = "";
 //IDs del main
 const sugerencias = document.getElementById("sugerencias");

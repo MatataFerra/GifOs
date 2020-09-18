@@ -25,6 +25,75 @@ body {
   background-color: #110038;
 }
 
+.backgroundYLetrasDark {
+  background-image: -webkit-gradient(linear, right top, left top, from(#ee3efe), to(#2e32fb)) !important;
+  background-image: linear-gradient(270deg, #ee3efe 0%, #2e32fb 100%) !important;
+  -webkit-box-shadow: 0 1px 0 0 #110038 !important;
+          box-shadow: 0 1px 0 0 #110038 !important;
+}
+
+.buttonDark {
+  background-color: #ee3efe !important;
+  border: 1px solid #110038 !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff !important;
+          box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff !important;
+  color: #fff !important;
+}
+
+.buttonDark:active, .buttonDark:hover {
+  background-color: #CE36DB !important;
+  outline: 1px dotted #110038 !important;
+  outline-offset: -4px !important;
+}
+
+.buttonDark:hover .parrafContainer,
+.buttonDark:hover .arrowDown {
+  background-color: #CE36DB !important;
+  outline: 1px dotted #110038 !important;
+  outline-offset: -4px !important;
+}
+
+.textDark {
+  color: #fff !important;
+}
+
+.borderDark {
+  border: 0.5px #fff solid !important;
+}
+
+.boxDark {
+  background: #b4b4b4 !important;
+  border: 1px solid #808080 !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff !important;
+          box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff !important;
+}
+
+.boxDark .boxResults:hover {
+  -webkit-box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+          box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+  cursor: pointer;
+  background-color: #b4b4b4;
+}
+
+.themeSelect {
+  background: #cccccc !important;
+  border: 1px solid #808080 !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff !important;
+          box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff !important;
+}
+
+.themeSelect:hover {
+  background: #2e32fb !important;
+  border: 1px solid rgba(51, 53, 143, 0.2) !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff !important;
+          box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff !important;
+  color: #fff !important;
+}
+
+.searchWordDark {
+  color: #8F8F8F !important;
+}
+
 .createGifDark {
   color: #110038;
   border: 1px solid #110038;
@@ -109,9 +178,9 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  background: #b4b4b4;
-  border: 1px solid #808080;
-  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+  background: #b4b4b4 !important;
+  border: 1px solid #808080 !important;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff !important;
   color: #fff;
 }
 
