@@ -58,7 +58,7 @@ body {
 }
 
 .borderDark {
-  border: 0.5px #fff solid !important;
+  border: 0.5px solid #fff !important;
 }
 
 .boxDark {
@@ -94,144 +94,15 @@ body {
   color: #8F8F8F !important;
 }
 
-.createGifDark {
-  color: #110038;
-  border: 1px solid #110038;
-  text-align: center;
-  line-height: 36px;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: relative;
-  background-color: #ee3efe;
-  border: 1px solid #110038;
-  -webkit-box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff;
-  color: #fff;
+.blueButtonDark {
+  background: #2E32FB !important;
+  border: 1px solid #4C2F99 !important;
+  -webkit-box-shadow: inset -2px -2px 0 0 #2124B3, inset 2px 2px 0 0 #FFFFFF !important;
+          box-shadow: inset -2px -2px 0 0 #2124B3, inset 2px 2px 0 0 #FFFFFF !important;
 }
 
-.createGifDark:hover {
-  background-color: #CE36DB;
-  outline: 1px dotted #110038;
-  outline-offset: -4px;
-}
-
-.styleBarDark {
-  background-image: -webkit-gradient(linear, right top, left top, from(#ee3efe), to(#2e32fb));
-  background-image: linear-gradient(270deg, #ee3efe 0%, #2e32fb 100%);
-  height: 24px;
-  line-height: 24px;
-}
-
-.tittleBarDark {
-  height: 23px;
-  line-height: 23px;
-  background-image: -webkit-gradient(linear, right top, left top, from(#ee3efe), to(#2e32fb));
-  background-image: linear-gradient(270deg, #ee3efe 0%, #2e32fb 100%);
-  -webkit-box-shadow: 0 1px 0 0 #110038;
-          box-shadow: 0 1px 0 0 #110038;
-}
-
-.pTittleDark {
-  font-size: 12px;
-  color: #ffffff;
-  margin-left: 0.3rem;
-}
-
-.searchBoxDark {
-  height: 72px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 85% 15%;
-      grid-template-columns: 85% 15%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  justify-items: center;
-  padding: 0.7rem;
-  -webkit-box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
-          box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
-  cursor: pointer;
-  background-color: #b4b4b4;
-}
-
-.buttonSearchDark {
-  border: 1px solid #808080;
-  -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 36px;
-  width: 102px;
-  margin: 0 0 0 8px;
-  color: #b4b4b4;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background: #b4b4b4 !important;
-  border: 1px solid #808080 !important;
-  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff !important;
-  color: #fff;
-}
-
-.buttonSearchDark .searchWord {
-  line-height: 36px;
-}
-
-.buttonSearchDark .lupa {
-  height: 16px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.buttonSearchDark .lupa img {
-  line-height: 36px;
-}
-
-.chooseThemeDark {
-  color: #110038;
-  border: 0.1px solid #110038;
-  text-align: center;
-  line-height: 36px;
-  display: -ms-grid;
-  display: grid;
-  width: calc(131px + 36px);
-  -ms-grid-columns: 131px 36px;
-      grid-template-columns: 131px 36px;
-  margin-right: 0;
-  background-color: #ee3efe;
-  border: 1px solid #110038;
-  -webkit-box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff;
-  color: #fff;
-}
-
-.chooseThemeDark:hover {
-  background-color: #CE36DB;
-  outline: 1px dotted #110038;
-  outline-offset: -4px;
-}
-
-.displayBoxSearchDark {
-  -webkit-box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
-          box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
-  padding: 0.8rem;
-  display: none;
-  -webkit-transition: display ease-in-out 0.5s;
-  transition: display ease-in-out 0.5s;
-  background-color: #b4b4b4;
+.myGifHoverDark:hover {
+  border: 0.3px dotted #fff !important;
 }
 
 .buttonHoverColorDark {
@@ -279,84 +150,6 @@ body {
 
 .buttonHoverColorDark .lupa img {
   line-height: 36px;
-}
-
-.navBar .themeContainerDark {
-  background: #b4b4b4;
-  -webkit-box-shadow: inset -2px -2px 0 0 #8f8f8f, inset 2px 2px 0 0 #ffffff;
-          box-shadow: inset -2px -2px 0 0 #8f8f8f, inset 2px 2px 0 0 #ffffff;
-  height: 102px;
-  text-align: center;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / 3;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
-  grid-row: 2 / 3;
-  visibility: hidden;
-  z-index: 1;
-}
-
-.navBar .dayThemeDark,
-.navBar .darkThemeDark {
-  padding: 0.3rem;
-  width: 150px;
-  margin: 0.5rem auto 0 auto;
-  border: 0.1px solid black;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.navBar .dayThemeDark {
-  background: #cccccc;
-  border: 1px solid #808080;
-  -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
-}
-
-.navBar .dayThemeDark:hover {
-  background: #2e32fb;
-  border: 1px solid rgba(51, 53, 143, 0.2);
-  -webkit-box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff;
-  color: #fff;
-}
-
-.navBar .darkThemeDark {
-  background: #cccccc;
-  border: 1px solid #808080;
-  -webkit-box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
-}
-
-.navBar .darkThemeDark:hover {
-  background: #2e32fb;
-  border: 1px solid rgba(51, 53, 143, 0.2);
-  -webkit-box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff;
-          box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff;
-  color: #fff;
-}
-
-.navBar .navigation .myGifDark {
-  max-width: 78px;
-  border: 0.1px dotted transparent;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.navBar .navigation .myGifDark:hover {
-  border: 0.1px dotted #fff;
-}
-
-.darkBack {
-  background: -webkit-gradient(linear, right top, left top, from(#EE3EFE), to(#2E32FB)) !important;
-  background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%) !important;
 }
 
 .navBar {
@@ -904,11 +697,11 @@ body {
 
 .navBar .navigation .myGif {
   max-width: 78px;
-  border: 0.1px dotted transparent;
+  border: 0.3px dotted transparent;
 }
 
 .navBar .navigation .myGif:hover {
-  border: 0.1px dotted #110038;
+  border: 0.3px dotted #110038;
 }
 
 .navBar .navigation .myGif span {

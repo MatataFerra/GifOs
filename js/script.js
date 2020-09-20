@@ -29,7 +29,7 @@ let searchArray = []
 const myGif = document.getElementById('myGif')
 
 //localStorage
-loadData()
+loadData();
 
 //-------------------------------Desplegar botón con temas--------------------------------------//
 
@@ -156,6 +156,8 @@ function createButtonsFromArray () {
   localStorage.setItem('searchArrayData', saveData);
 } 
 function loadData() {
+
+  
 
   if(localStorage.searchArrayData){
     

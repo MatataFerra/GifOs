@@ -2,12 +2,13 @@
 let arrayBackgroundYLetrasDark = [];
 let arrayButtonDark = [];
 let arrayBoxDark = [];
-let arrayThemeSelect = []
-let arrayWhiteWords = []
-//Botones Theme
-
-arrayThemeSelect.push(dayTheme, darkTheme)
-
+let arrayThemeSelect = [];
+let arrayWhiteWords = [];
+let saveTheme;
+let themeClick;
+//Logo y Body
+let darkThemeBody = document.getElementById("darkThemeBody");
+let logo = document.querySelector(".logoPNG");
 
 //Barras
 let tittleBgBar = document.getElementById("tittleBar");
@@ -15,52 +16,84 @@ let bgSearchBar = document.getElementById("styleBar");
 let gifResultsFrames = document.getElementsByClassName("gifResultsFrame");
 let trendFootImgs = document.getElementsByClassName("trendFootImg");
 
-arrayBackgroundYLetrasDark.push(tittleBgBar, bgSearchBar);
-
 //Botones
-let createGif = document.getElementById("createGif");
-let chooseTheme = document.getElementById("chooseTheme");
+const createGif = document.getElementById("createGif");
+const chooseTheme = document.getElementById("chooseTheme");
 const borderLine = document.querySelector(".border");
 const myGifDarker = document.querySelector(".myGifDarker");
-//let myGif = document.getElementById("myGif"); //YA EXISTE
-arrayButtonDark.push(createGif, chooseTheme)
-arrayWhiteWords.push(myGifDarker, borderLine)
-//Buscar
-//let searchBox = document.getElementById("searchBox"); //YA EXISTE
+const blueButtonSearch = document.getElementsByClassName('blueButtonDone');
+const blueButtonApi = document.getElementsByClassName('blueButton');
 
-let logo = document.querySelector(".logoPNG");
+//Push
+arrayThemeSelect.push(dayTheme, darkTheme);
+arrayBackgroundYLetrasDark.push(tittleBgBar, bgSearchBar);
+arrayButtonDark.push(createGif, chooseTheme);
+arrayWhiteWords.push(myGifDarker, borderLine);
+arrayBoxDark.push(searchBox, buttonSearch, displayBoxSearch, themeContainer);
 
-//let buttonSearch = document.getElementById("buttonSearch"); // YA EXISTE
-//Caja de búsqueda en display none
-//let displayBoxSearch = document.getElementById("displayBoxSearch"); // YA EXISTE
+// let saveData = JSON.stringify(searchArray);
+// localStorage.setItem('searchArrayData', saveData);
 
-//let themeContainer = document.getElementById('themeContainer') // YA EXISTE
 
-arrayBoxDark.push(searchBox, buttonSearch, displayBoxSearch, themeContainer)
+if(localStorage.themeSave) {
+  
+  let loadDataTheme = localStorage.getItem('themeSave');
+  themeClick = document.getElementById(`${loadDataTheme}`);
+  themeSwith();
+
+  console.log(loadDataTheme);
+
+}
 
 for (let changetheme of theme) {
   changetheme.addEventListener("click", darkThemeON);
 }
 
 function darkThemeON(e) {
-  document.getElementById("darkThemeBody");
+
   e.preventDefault();
-  let themeClick = e.target;
+  themeClick = e.target;
+  //Local Storage
 
+  if(themeClick === dayTheme) {
+    saveTheme = themeClick.id;
+    localStorage.setItem('themeSave', saveTheme);
+  } else if (themeClick === darkTheme) {
+    saveTheme = themeClick.id;
+    localStorage.setItem('themeSave', saveTheme);
+  }
+
+  //FIN Local Storage
+  
+  themeSwith();
+
+  if(charsetSearch.length && themeClick === dayTheme) {
+    buttonSearch.classList.replace('buttonHoverColorDark', 'buttonHoverColor')
+  }
+
+  if(charsetSearch.length && themeClick === darkTheme) {
+    buttonSearch.classList.replace('buttonHoverColor', 'buttonHoverColorDark');
+    buttonSearch.classList.remove('boxDark');
+  }
+
+}
+
+
+
+function themeSwith() {
   if (themeClick === darkTheme) {
-    document.body.classList.add("darkThemeBody");
-    // createGif.classList.replace("createGif", "createGifDark");
-    // chooseTheme.classList.replace("chooseTheme", "chooseThemeDark");
-    // tittleBgBar.classList.replace("tittleBar", "tittleBarDark");
-    // bgSearchBar.classList.replace("styleBar", "styleBarDark");
+    darkThemeBody.classList.add("darkThemeBody");
 
-    for (let elem of gifResultsFrames) {
-      elem.classList.add("backgroundYLetrasDark");
-    }
+    setTimeout(()=>{
+      for (let elem of gifResultsFrames) {
+        elem.classList.add("backgroundYLetrasDark");
+      }
+      
+      for (let elem of trendFootImgs) {
+        elem.classList.add("backgroundYLetrasDark");
+      }
+    },1000)
 
-    for (let elem of trendFootImgs) {
-      elem.classList.add("backgroundYLetrasDark");
-    }
 
     for (let elem of arrayBackgroundYLetrasDark ) {
       elem.classList.add("backgroundYLetrasDark");
@@ -78,75 +111,104 @@ function darkThemeON(e) {
       elem.classList.add('themeSelect');
     }
 
-    searchWord.classList.add('searchWordDark');
-    myGifDarker.classList.add('textDark');
-    borderLine.classList.add('borderDark');
-
-    logo.setAttribute("src", "./assets/gifOF_logo_dark.png");
-    // searchBox.classList.replace("searchBox", "searchBoxDark");
-    // buttonSearch.classList.replace("buttonSearch", "buttonSearchDark");
-    // darkTheme.classList.replace("darkTheme", "darkThemeDark");
-    // dayTheme.classList.replace("dayTheme", "dayThemeDark");
-    // themeContainer.classList.replace("themeContainer", "themeContainerDark");
-    // myGifBox.classList.replace("myGif", "myGifDark");
-    // searchWord.style.color = "#8F8F8F";
-    
-    // displayBoxSearch.classList.replace(
-    //   "displayBoxSearch",
-    //   "displayBoxSearchDark"
-    // );
-
-    if (buttonSearch.classList.contains("buttonHoverColor")) {
-      buttonSearch.classList.replace(
-        "buttonHoverColor",
-        "buttonHoverColorDark"
-      );
+    for (let elem of blueButtonSearch) {
+      elem.classList.add('blueButtonDark');
     }
 
-    // borderLine.style.visibility = "hidden";
-    // myGif.style.color = "#fff";
+    for (let elem of blueButtonApi) {
+      elem.classList.add('blueButtonDark');
+    }
 
+    searchWord.classList.add('searchWordDark');
+    myGifDarker.classList.add('textDark');
+    myGif.classList.add('myGifHoverDark');
+    borderLine.classList.add('borderDark');
+    
+    logo.setAttribute("src", "./assets/gifOF_logo_dark.png");
+    
     inputSearch.addEventListener("keyup", () => {
+
+      buttonSearch.classList.remove('buttonHoverColor');
       buttonSearch.classList.replace(
-        "buttonSearchDark",
+        "boxDark",
         "buttonHoverColorDark"
       );
+
+      if(charsetSearch.length == 0) {
+        buttonSearch.classList.replace(
+          "buttonHoverColorDark",
+          "boxDark"
+        );
+
+        buttonSearch.classList.add('buttonSearch')
+      }
     });
+    
   }
 
+  //-----DAY THEME-----//
 
-  // if (themeClick === dayTheme) {
+  if (themeClick === dayTheme) {
+
+    darkThemeBody.classList.remove("darkThemeBody");
+
+    for (let elem of gifResultsFrames) {
+      elem.classList.remove("backgroundYLetrasDark");
+    }
+
+    for (let elem of trendFootImgs) {
+      elem.classList.remove("backgroundYLetrasDark");
+    }
+
+    for (let elem of arrayBackgroundYLetrasDark ) {
+      elem.classList.remove("backgroundYLetrasDark");
+    }
+
+    for (let elem of arrayButtonDark) {
+      elem.classList.remove("buttonDark");
+    }
+
+    for (let elem of arrayBoxDark) {
+      elem.classList.remove("boxDark");
+    }
+
+    for(let elem of arrayThemeSelect) {
+      elem.classList.remove('themeSelect');
+    }
+
+    for (let elem of blueButtonSearch) {
+      elem.classList.remove('blueButtonDark');
+    }
+
+    for (let elem of blueButtonApi) {
+      elem.classList.remove('blueButtonDark');
+    }
+
+    searchWord.classList.remove('searchWordDark');
+    myGifDarker.classList.remove('textDark');
+    myGif.classList.remove('myGifHoverDark');
+    borderLine.classList.remove('borderDark');
     
-  //   document.body.classList.remove("darkThemeBody");
-  //   createGif.classList.replace("createGifDark", "createGif");
-  //   chooseTheme.classList.replace("chooseThemeDark", "chooseTheme");
-  //   tittleBgBar.classList.replace("tittleBarDark", "tittleBar");
-  //   bgSearchBar.classList.replace("styleBarDark", "styleBar");
-  //   for (let auxClass of gifResultsFrames) {
-  //       auxClass.classList.remove("darkBack");
-  //     }
-  
-  //     for (let auxClass of trendFootImgs) {
-  //       auxClass.classList.remove("darkBack");
-  //     }
+    logo.setAttribute("src", "./assets/gifOF_logo.png");
+    
+    inputSearch.addEventListener("keyup", () => {
+      buttonSearch.classList.add('buttonHoverColor');
+      buttonSearch.classList.replace(
+        "buttonHoverColorDark",
+        "boxDark"
+      );
 
+      
+    });
 
-  //   searchBox.classList.replace("searchBoxDark", "searchBox");
-  //   buttonSearch.classList.replace("buttonSearchDark", "buttonSearch");
-  //   darkTheme.classList.replace("darkThemeDark", "darkTheme");
-  //   dayTheme.classList.replace("dayThemeDark", "dayTheme");
-  //   themeContainer.classList.replace("themeContainerDark", "themeContainer");
-  //   buttonSearch.classList.replace("buttonHoverColorDark", "buttonHoverColor");
-  //   myGifBox.classList.replace("myGifDark", "myGif");
-  //   searchWord.style.color = "#8F8F8F";
-  //   logo.setAttribute("src", "./assets/gifOF_logo.png");
-  //   displayBoxSearch.classList.replace(
-  //     "displayBoxSearchDark",
-  //     "displayBoxSearch"
-  //   );
-  //   borderLine.style.visibility = "visible";
-  //   myGif.style.color = "#110038";
-  // }
+  }
 }
+
+if(themeClick) {
+
+  saveTheme = themeClick.id;
+  console.log(saveTheme)
+}
+
 
 //-------------------------------FIN Dark Theme--------------------------------------//
