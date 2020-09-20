@@ -80,8 +80,6 @@
   border: 0.3px dotted #fff!important;
 }
 
-///------------------ NEW DARK ------------------////
-
 
 .buttonHoverColorDark {
   border: 1px solid #110038;
@@ -118,4 +116,30 @@
   }
 }
 
-// 
+.comenzarGifDark {
+  background: #EE3EFE!important;
+  border: 1px solid #110038!important;
+  box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF!important;
+  &:hover {
+    background: #CE36DB!important;
+    border: 1px solid #110038!important;
+    box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF!important;
+  }
+}
+
+.cancelarGifDark {
+  background: #CCCCCC!important;
+  border: 1px solid #808080!important;
+  box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF!important;
+  
+  &:hover {
+    background: #2E32FB!important;
+    border: 1px solid rgba(51,53,143,0.20)!important;
+    box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF!important;
+  }
+
+  &:hover a{
+    color: #fff!important;
+  }
+}
+

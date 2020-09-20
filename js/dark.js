@@ -1,13 +1,16 @@
 
+
+
 let arrayBackgroundYLetrasDark = [];
 let arrayButtonDark = [];
 let arrayBoxDark = [];
 let arrayThemeSelect = [];
 let arrayWhiteWords = [];
 let saveTheme;
-let themeClick;
+let themeClick = 'dayTheme';
 //Logo y Body
-let darkThemeBody = document.getElementById("darkThemeBody");
+const darkThemeBody = document.getElementById("darkThemeBody");
+const crearGifBody = document.getElementById('crearGifBody');
 let logo = document.querySelector(".logoPNG");
 
 //Barras
@@ -24,63 +27,85 @@ const myGifDarker = document.querySelector(".myGifDarker");
 const blueButtonSearch = document.getElementsByClassName('blueButtonDone');
 const blueButtonApi = document.getElementsByClassName('blueButton');
 
-//Push
-arrayThemeSelect.push(dayTheme, darkTheme);
-arrayBackgroundYLetrasDark.push(tittleBgBar, bgSearchBar);
-arrayButtonDark.push(createGif, chooseTheme);
-arrayWhiteWords.push(myGifDarker, borderLine);
-arrayBoxDark.push(searchBox, buttonSearch, displayBoxSearch, themeContainer);
-
-// let saveData = JSON.stringify(searchArray);
-// localStorage.setItem('searchArrayData', saveData);
+//ID para Cambiar de Temas
+const darkTheme = document.getElementById("darkTheme");
+const dayTheme = document.getElementById("dayTheme");
+const themeContainer = document.getElementById("themeContainer");
+//Variable para cambiar de tema están dentro de Dark y Day Theme del HTML
+let theme = document.querySelectorAll(".theme");
 
 
-if(localStorage.themeSave) {
+
+if(document.body.id === "darkThemeBody") {
+  //Push
+  arrayThemeSelect.push(dayTheme, darkTheme);
+  arrayBackgroundYLetrasDark.push(tittleBgBar, bgSearchBar);
+  arrayButtonDark.push(createGif, chooseTheme);
+  arrayWhiteWords.push(myGifDarker, borderLine);
+  arrayBoxDark.push(searchBox, buttonSearch, displayBoxSearch, themeContainer);
+
+  //Comprobando si ya está guardado el theme
+  if(localStorage.themeSave) {
+    
+    let loadDataTheme = localStorage.getItem('themeSave');
+    themeClick = document.getElementById(`${loadDataTheme}`);
+    themeSwith();
+
+  }
   
-  let loadDataTheme = localStorage.getItem('themeSave');
-  themeClick = document.getElementById(`${loadDataTheme}`);
-  themeSwith();
-
-  console.log(loadDataTheme);
-
-}
-
-for (let changetheme of theme) {
-  changetheme.addEventListener("click", darkThemeON);
-}
-
-function darkThemeON(e) {
-
-  e.preventDefault();
-  themeClick = e.target;
-  //Local Storage
-
-  if(themeClick === dayTheme) {
-    saveTheme = themeClick.id;
-    localStorage.setItem('themeSave', saveTheme);
-  } else if (themeClick === darkTheme) {
-    saveTheme = themeClick.id;
-    localStorage.setItem('themeSave', saveTheme);
+  //Si no está guardado de acuerdo al botón que se aprete ejecuta la función
+  for (let changetheme of theme) {
+    changetheme.addEventListener("click", darkThemeON);
   }
 
-  //FIN Local Storage
+  function darkThemeON(e) {
+
+    e.preventDefault();
+    themeClick = e.target;
+    //Local Storage
+
+    if(themeClick === dayTheme) {
+      saveTheme = themeClick.id;
+      localStorage.setItem('themeSave', saveTheme);
+    } else if (themeClick === darkTheme) {
+      saveTheme = themeClick.id;
+      localStorage.setItem('themeSave', saveTheme);
+    }
+
+    //FIN Local Storage
+    
+    themeSwith();
+
+    if(charsetSearch.length && themeClick === dayTheme) {
+      buttonSearch.classList.replace('buttonHoverColorDark', 'buttonHoverColor')
+    }
+
+    if(charsetSearch.length && themeClick === darkTheme) {
+      buttonSearch.classList.replace('buttonHoverColor', 'buttonHoverColorDark');
+      buttonSearch.classList.remove('boxDark');
+    }
+
+  }
+
+  if(themeClick) {
+    saveTheme = themeClick.id;
+    console.log(saveTheme)
+  }
+}
+
+if(document.body.id === "crearGifBody") {
+  if(localStorage.themeSave) {
+    let loadDataTheme = localStorage.getItem('themeSave');
+    themeClick = JSON.stringify(loadDataTheme);
+    themeSwithCreateGif();
+  }
   
-  themeSwith();
-
-  if(charsetSearch.length && themeClick === dayTheme) {
-    buttonSearch.classList.replace('buttonHoverColorDark', 'buttonHoverColor')
-  }
-
-  if(charsetSearch.length && themeClick === darkTheme) {
-    buttonSearch.classList.replace('buttonHoverColor', 'buttonHoverColorDark');
-    buttonSearch.classList.remove('boxDark');
-  }
-
-}
+} 
 
 
 
 function themeSwith() {
+
   if (themeClick === darkTheme) {
     darkThemeBody.classList.add("darkThemeBody");
 
@@ -202,13 +227,52 @@ function themeSwith() {
     });
 
   }
+
+  
 }
 
-if(themeClick) {
 
-  saveTheme = themeClick.id;
-  console.log(saveTheme)
+
+function themeSwithCreateGif () {
+  console.log('ya en la funcion')
+  const barraCrearGif = document.querySelector('.barraCrearGif');
+  const crearGif = document.getElementById('crearGif');
+  const cancelarButton = document.getElementById('cancelarButton');
+  const comenzarButton = document.getElementById('comenzarButton');
+  arrayBackgroundYLetrasDark.push(tittleBgBar, barraCrearGif);
+  arrayBoxDark.push(crearGif)
+
+  if (JSON.parse(themeClick) === "darkTheme") {
+    crearGifBody.classList.add("darkThemeBody");
+    logo.src = "./assets/gifOF_logo_dark.png";
+    console.log('stamos en dark')
+    cancelarButton.classList.add('cancelarGifDark');
+    comenzarButton.classList.add('comenzarGifDark')
+
+    for (let elem of arrayBackgroundYLetrasDark) {
+      elem.classList.add("backgroundYLetrasDark");
+    }
+
+    for (let elem of arrayBoxDark) {
+      elem.classList.add("boxDark");
+    }
+    
+  } 
+  
+  if (JSON.parse(themeClick) === "dayTheme") {
+    crearGifBody.classList.remove("darkThemeBody");
+    console.log('está ingresando a DAY')
+    logo.src = "./assets/gifOF_logo.png";
+
+    cancelarButton.classList.remove('cancelarGifDark');
+    comenzarButton.classList.remove('comenzarGifDark')
+
+    for (let elem of arrayBackgroundYLetrasDark) {
+      elem.classList.remove("backgroundYLetrasDark");
+    }
+  }
 }
+
 
 
 //-------------------------------FIN Dark Theme--------------------------------------//

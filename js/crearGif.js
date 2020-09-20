@@ -5,6 +5,7 @@ let recorder; // globally accessible
 let video = document.getElementById('videoObj');
 
 
+
 class Button {
     constructor(id, listener) {   
         this.id = document.getElementById(`${id}`);
@@ -56,10 +57,6 @@ let stopRecordingCallback = () => {
     video.src = URL.createObjectURL(recorder.getBlob());
     recorder.camera.stop();
 }
-
-
-
-
 
 
 let startRecord  = () => {

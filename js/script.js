@@ -11,12 +11,7 @@ let charsetSearch = "";
 const sugerencias = document.getElementById("sugerencias");
 const tendencias = document.getElementById("tendencias");
 const apiResults = document.getElementById("APIResults");
-//ID para Cambiar de Temas
-const darkTheme = document.getElementById("darkTheme");
-const dayTheme = document.getElementById("dayTheme");
-const themeContainer = document.getElementById("themeContainer");
-//Variable para cambiar de tema están dentro de Dark y Day Theme del HTML
-let theme = document.querySelectorAll(".theme");
+
 
 //Globales para búsquedas realizadas LocalStorage
 const searchsDone = document.getElementById('searchsDone')
