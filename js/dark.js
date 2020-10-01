@@ -1,6 +1,4 @@
 
-
-
 let arrayBackgroundYLetrasDark = [];
 let arrayButtonDark = [];
 let arrayBoxDark = [];
@@ -89,7 +87,6 @@ if(document.body.id === "darkThemeBody") {
 
   if(themeClick) {
     saveTheme = themeClick.id;
-    console.log(saveTheme)
   }
 }
 
@@ -117,6 +114,10 @@ function themeSwith() {
       for (let elem of trendFootImgs) {
         elem.classList.add("backgroundYLetrasDark");
       }
+
+      for (let elem of blueButtonApi) {
+        elem.classList.add('blueButtonDark');
+      }
     },1000)
 
 
@@ -140,9 +141,7 @@ function themeSwith() {
       elem.classList.add('blueButtonDark');
     }
 
-    for (let elem of blueButtonApi) {
-      elem.classList.add('blueButtonDark');
-    }
+    
 
     searchWord.classList.add('searchWordDark');
     myGifDarker.classList.add('textDark');
@@ -234,18 +233,19 @@ function themeSwith() {
 
 
 function themeSwithCreateGif () {
-  console.log('ya en la funcion')
+
   const barraCrearGif = document.querySelector('.barraCrearGif');
   const crearGif = document.getElementById('crearGif');
   const cancelarButton = document.getElementById('cancelarButton');
   const comenzarButton = document.getElementById('comenzarButton');
-  arrayBackgroundYLetrasDark.push(tittleBgBar, barraCrearGif);
-  arrayBoxDark.push(crearGif)
+  const barraChequearGif = document.querySelector('.barraChequearGif')
+  const srcObjetc = document.getElementById('srcObjetc')
+  arrayBackgroundYLetrasDark.push(tittleBgBar, barraCrearGif, barraChequearGif);
+  arrayBoxDark.push(crearGif, srcObjetc)
 
   if (JSON.parse(themeClick) === "darkTheme") {
     crearGifBody.classList.add("darkThemeBody");
     logo.src = "./assets/gifOF_logo_dark.png";
-    console.log('stamos en dark')
     cancelarButton.classList.add('cancelarGifDark');
     comenzarButton.classList.add('comenzarGifDark')
 
@@ -261,7 +261,6 @@ function themeSwithCreateGif () {
   
   if (JSON.parse(themeClick) === "dayTheme") {
     crearGifBody.classList.remove("darkThemeBody");
-    console.log('está ingresando a DAY')
     logo.src = "./assets/gifOF_logo.png";
 
     cancelarButton.classList.remove('cancelarGifDark');

@@ -948,7 +948,7 @@ body {
   margin-right: 0.5rem;
 }
 
-.crearGif {
+.crearGif, #srcObjetc {
   width: 684px;
   height: 386px;
   margin: 0 auto;
@@ -957,7 +957,7 @@ body {
           box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
 }
 
-.crearGif .barraCrearGif {
+.crearGif .barraCrearGif, #srcObjetc .barraCrearGif, #srcObjetc .barraChequearGif {
   background-image: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
   background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
   height: 24px;
@@ -967,59 +967,59 @@ body {
   padding: 4px;
 }
 
-.crearGif .containerCrearGif {
+.crearGif .containerCrearGif, #srcObjetc .containerCrearGif {
   padding: 2rem;
 }
 
-.crearGif .containerCrearGif .iconTitleCrearGif {
+.crearGif .containerCrearGif .iconTitleCrearGif, #srcObjetc .containerCrearGif .iconTitleCrearGif {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1rem;
 }
 
-.crearGif .containerCrearGif .iconTitleCrearGif img {
+.crearGif .containerCrearGif .iconTitleCrearGif img, #srcObjetc .containerCrearGif .iconTitleCrearGif img {
   margin-right: 1.5rem;
 }
 
-.crearGif .containerCrearGif .iconTitleCrearGif p {
+.crearGif .containerCrearGif .iconTitleCrearGif p, #srcObjetc .containerCrearGif .iconTitleCrearGif p {
   font-weight: bold;
   font-size: 16px;
   color: #110038;
 }
 
-.crearGif .containerCrearGif .listCrearGif {
+.crearGif .containerCrearGif .listCrearGif, #srcObjetc .containerCrearGif .listCrearGif {
   margin-left: 3.5rem;
   font-size: 14px;
   color: #110038;
 }
 
-.crearGif .containerCrearGif .listCrearGif p {
+.crearGif .containerCrearGif .listCrearGif p, #srcObjetc .containerCrearGif .listCrearGif p {
   margin-bottom: 0.5rem;
 }
 
-.crearGif .containerCrearGif .listCrearGif .ulCrearGif li {
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif li, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif li {
   margin-bottom: 0.5rem;
   list-style: none;
 }
 
-.crearGif .containerCrearGif .listCrearGif .ulCrearGif .dot {
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif .dot, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif .dot {
   margin-right: 0.4rem;
 }
 
-.crearGif .containerCrearGif .listCrearGif .ulCrearGif:last-child {
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif:last-child, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif:last-child {
   margin-bottom: 0;
 }
 
-.crearGif .containerCrearGif .listCrearGif .boldCrearGif {
+.crearGif .containerCrearGif .listCrearGif .boldCrearGif, #srcObjetc .containerCrearGif .listCrearGif .boldCrearGif {
   font-weight: bold;
 }
 
-.crearGif .containerCrearGif .listCrearGif .italic {
+.crearGif .containerCrearGif .listCrearGif .italic, #srcObjetc .containerCrearGif .listCrearGif .italic {
   font-style: italic;
 }
 
-.crearGif .buttonsCrearGif {
+.buttonsCrearGif, .repetirSubir {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1028,7 +1028,7 @@ body {
           justify-content: flex-end;
 }
 
-.crearGif .buttonsCrearGif .cancelarButton {
+.buttonsCrearGif .cancelarButton, .repetirSubir .cancelarButton, .repetirSubir .repetir {
   margin-right: 1rem;
   width: 144px;
   height: 36px;
@@ -1041,16 +1041,16 @@ body {
   cursor: pointer;
 }
 
-.crearGif .buttonsCrearGif .cancelarButton:hover {
+.buttonsCrearGif .cancelarButton:hover, .repetirSubir .cancelarButton:hover, .repetirSubir .repetir:hover {
   outline: 1px dotted #110038;
   outline-offset: -4px;
 }
 
-.crearGif .buttonsCrearGif .cancelarButton a {
+.buttonsCrearGif .cancelarButton a, .repetirSubir .cancelarButton a, .repetirSubir .repetir a {
   text-decoration: none;
 }
 
-.crearGif .buttonsCrearGif .comenzarButton {
+.buttonsCrearGif .comenzarButton, .repetirSubir .comenzarButton, .repetirSubir .subir {
   margin-right: 3rem;
   width: 144px;
   height: 36px;
@@ -1063,7 +1063,7 @@ body {
   cursor: pointer;
 }
 
-.crearGif .buttonsCrearGif .comenzarButton:hover {
+.buttonsCrearGif .comenzarButton:hover, .repetirSubir .comenzarButton:hover, .repetirSubir .subir:hover {
   outline: 1px dotted #110038;
   outline-offset: -4px;
 }
@@ -1090,8 +1090,21 @@ body {
 }
 
 #videoObj {
+  width: 746px;
+  height: 429px;
   margin: 0 auto;
-  display: none;
+}
+
+.videoObjContainer {
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  display: block;
+  width: 754px;
+  height: 432px;
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  -webkit-box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+          box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
 
 .buttonsContainer {
@@ -1102,5 +1115,185 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   margin: 1rem auto;
+}
+
+#srcObjetc {
+  width: 860px;
+  height: 548px;
+  margin: 1rem auto;
+  background: #E6E6E6;
+  -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+          box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+}
+
+#srcObjetc .barraChequearGif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#srcObjetc .containerComenzarCaptura {
+  margin: 0 3.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#srcObjetc .comenzarCaptura {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+#srcObjetc .comenzarCaptura:hover .cameraSvg,
+#srcObjetc .comenzarCaptura:hover .capturar {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+#srcObjetc .comenzarCaptura .cameraSvg {
+  width: 36px;
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  padding: 0.5rem;
+}
+
+#srcObjetc .comenzarCaptura .capturar {
+  color: #110038;
+  width: 144px;
+  text-align: center;
+  padding: 0.5rem;
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  cursor: pointer;
+}
+
+#srcObjetc .timerGuifo {
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  -webkit-box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+          box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+  width: 124px;
+  height: 36px;
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 36px;
+}
+
+#srcObjetc .listoCaptura {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+#srcObjetc .listoCaptura:hover .cameraSvg,
+#srcObjetc .listoCaptura:hover .capturar {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+#srcObjetc .listoCaptura .listoSvg {
+  width: 36px;
+  padding: 0.5rem;
+  background: #FF6161;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+}
+
+#srcObjetc .listoCaptura .listo {
+  width: 144px;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+  background: #FF6161;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+}
+
+.progressBarContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1rem;
+  visibility: hidden;
+}
+
+.progressBar {
+  -webkit-box-shadow: inset 2px 2px 0 0 #FFFCFC, inset -2px -2px 0 0 #000000;
+          box-shadow: inset 2px 2px 0 0 #FFFCFC, inset -2px -2px 0 0 #000000;
+  height: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: transparent;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.1rem;
+}
+
+.bar {
+  border: #B4B4B4 1px solid;
+  margin-right: 2px;
+  background: #999999;
+  width: 12px;
+  height: 20px;
+}
+
+.barColor {
+  background: #F7C9F3 !important;
+}
+
+#forward {
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  padding: 0.3rem;
+  height: 25px;
+  width: 25px;
+}
+
+.repetirSubir .repetir {
+  margin-top: 1rem;
+}
+
+.repetirSubir .repetir p {
+  text-decoration: none;
+  color: #110038;
+}
+
+.repetirSubir .subir {
+  margin-top: 1rem;
+  margin-right: 0;
+}
+
+.repetirSubir .subir a {
+  text-decoration: none;
+  color: #110038;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -75,47 +75,49 @@
             }
         }
     }
+    
+}
 
-    .buttonsCrearGif {
-        @include flex(flex-end);
+.buttonsCrearGif {
+    @include flex(flex-end);
 
-        .cancelarButton{
-            margin-right: 1rem;
-            width: 144px;
-            height: 36px;
-            background: #FFF4FD;
-            border: 1px solid #110038;
-            box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
-            text-align: center;
-            line-height: 36px;
-            cursor: pointer;
-            &:hover {
-                outline: 1px dotted #110038;
-                outline-offset: -4px;
-            }
-
-            a {
-                text-decoration: none;
-            }
+    .cancelarButton{
+        margin-right: 1rem;
+        width: 144px;
+        height: 36px;
+        background: #FFF4FD;
+        border: 1px solid #110038;
+        box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+        text-align: center;
+        line-height: 36px;
+        
+        cursor: pointer;
+        &:hover {
+            outline: 1px dotted #110038;
+            outline-offset: -4px;
         }
 
-        .comenzarButton {
-            margin-right: 3rem;
-            width: 144px;
-            height: 36px;
-            background: #F7C9F3;
-            border: 1px solid #110038;
-            box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
-            text-align: center;
-            line-height: 36px;
-            cursor: pointer;
-            &:hover {
-                outline: 1px dotted #110038;
-                outline-offset: -4px;
-            }
+        a {
+            text-decoration: none;
+            
         }
     }
-    
+
+    .comenzarButton {
+        margin-right: 3rem;
+        width: 144px;
+        height: 36px;
+        background: #F7C9F3;
+        border: 1px solid #110038;
+        box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+        text-align: center;
+        line-height: 36px;
+        cursor: pointer;
+        &:hover {
+            outline: 1px dotted #110038;
+            outline-offset: -4px;
+        }
+    }
 }
 
 .misGuifos {
@@ -139,8 +141,20 @@
 }
 
 #videoObj {
+    width: 746px;
+    height: 429px;
     margin: 0 auto;
-    display: none;
+}
+
+.videoObjContainer{
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    display: block;
+    width: 754px;
+    height: 432px;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
 
 .buttonsContainer {
@@ -150,3 +164,171 @@
     margin: 1rem auto;
 
 }
+
+#srcObjetc {
+    width: 860px;
+    height: 548px;
+    margin: 1rem auto;
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    @extend .crearGif;
+    
+    .barraChequearGif {
+        @include flex(space-between);
+        @extend .barraCrearGif;
+        
+    }
+
+    .containerComenzarCaptura{
+        margin: 0 3.2rem;
+        @include flex(space-between);
+        align-items: center;
+
+
+    }
+    .comenzarCaptura {
+        @include flex(flex-end);
+        margin-top: 1rem;
+        
+        
+        &:hover .cameraSvg,
+        &:hover .capturar {
+            outline: 1px dotted #110038;
+            outline-offset: -4px;
+        }
+        
+        .cameraSvg {
+            width: 36px;
+            background: #F7C9F3;
+            border: 1px solid #110038;
+            box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+            padding: 0.5rem;
+            
+        }
+
+        .capturar {
+            color: #110038;
+            width: 144px;
+            text-align: center;
+            padding: 0.5rem;
+            background: #F7C9F3;
+            border: 1px solid #110038;
+            box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+            cursor: pointer;
+        }
+
+        
+    }
+
+    .timerGuifo {
+        background: #FFFFFF;
+        border: 1px solid #979797;
+        box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+        width: 124px;
+        height: 36px;
+        margin-top: 1rem;
+        text-align: center;
+        line-height: 36px;
+        
+    }
+
+    .listoCaptura {
+        @include flex(flex-end);
+        margin-top: 1rem;
+
+        &:hover .cameraSvg,
+        &:hover .capturar {
+            outline: 1px dotted #110038;
+            outline-offset: -4px;
+        }
+
+        .listoSvg {
+            width: 36px;
+            padding: 0.5rem;
+            background: #FF6161;
+            border: 1px solid #110038;
+            box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+        }
+
+        .listo {
+
+            width: 144px;
+            text-align: center;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: #fff;
+            background: #FF6161;
+            border: 1px solid #110038;
+            box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+        }
+
+    }
+}
+
+
+//Progress Bar
+$progress: 25px;
+
+.progressBarContainer{
+    display: flex;
+    margin-top: 1rem;
+    visibility: hidden;
+}
+
+
+.progressBar{
+    box-shadow: inset 2px 2px 0 0 #FFFCFC, inset -2px -2px 0 0 #000000;
+    height: $progress;
+    display: flex;
+    background: transparent;
+    align-items: center;
+    padding: 0.1rem;
+}
+
+.bar{
+    border: #B4B4B4 1px solid;
+    margin-right: 2px;
+    background: #999999;
+    width: 12px;
+    height: 20px;
+
+}
+
+.barColor {
+    background: #F7C9F3!important;
+}
+
+#forward{
+    background: #F7C9F3;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    padding: 0.3rem;
+    height: $progress;
+    width: $progress;
+}
+
+
+.repetirSubir {
+    
+    @extend .buttonsCrearGif;
+
+    .repetir {
+        @extend .cancelarButton;
+        margin-top: 1rem;
+        p {
+            text-decoration: none;
+            color: #110038;
+        }
+    }
+    
+    .subir {
+        @extend .comenzarButton;
+        margin-top: 1rem;
+        margin-right: 0;
+        a {
+            text-decoration: none;
+            color: #110038;
+        }
+    }
+}
+

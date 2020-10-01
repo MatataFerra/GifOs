@@ -55,16 +55,36 @@
             </div>           
         </section>
         <section id="srcObjetc">
-            <video id="videoObj" autoplay playsinline loop></video>
-            <div class="buttonsContainer">
-                <button id="start">Start</button>
-                <button id="stop"  disabled>Stop</button>
-                <button id="delete"  disabled>Eliminar</button>
-                <button id="pause" disabled>Pause</button>
-                <button id="resume"  disabled>Resume</button>
+            <div class="barraChequearGif">
+                <p>Un Chequeo Antes de Empezar</p>
+                <img src="./assets/button3.svg" alt="cruz" id="cruzChequeo">
             </div>
-            
+            <div class="videoObjContainer">
+                <video id="videoObj" playsinline></video>
+            </div>
+            <div class="containerComenzarCaptura" id="containerCaptura">
+                <div class="timerGuifo" id="timerGuifo">00:00:00:00</div>  
+                <div class="progressBarContainer" id="progressBarContainer">
+                    <img src="./assets/forward.svg" alt="" id="forward">
+                    <div class="progressBar" id="progressBar"></div>
+                </div>
+                <div class="comenzarCaptura">
+                    <img src="./assets/camera.svg" alt="camera" class="cameraSvg">
+                    <div class="capturar" id="capturar">Capturar</div>
+                </div>
+                <div class="listoCaptura" id="listoCaptura">
+                    <img src="./assets/recording.svg" alt="recording" class="listoSvg">
+                    <div class="listo" id="listo">Listo</div>
+                </div>
+                <div class="repetirSubir" id="repetirSubir">
+                    <div class="repetir"><p>Repetir Captura</p></div>
+                    <div class="subir"><a href="#">Subir Guifo</a></div>
+                </div>
+                
+            </div>
         </section>
+        <br>
+        <br>
 
         <section class="misGuifos">
             <div class="h1Sugs">
@@ -72,9 +92,10 @@
             </div>
         </section>
     </main>
-    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
-    <script src="./node_modules/recordrtc/RecordRTC.js"></script>
-    <script src="./js/crearGif.js"></script>
+    <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script> -->
+    <script src="./node_modules/RecordRTC.js"></script>
+    <script src="./js/crearGif.js" type="module"></script>
+    <script src="./js/cronometro.js" type="module"></script>
     <script src="./js/dark.js"></script>
 </body>
 
