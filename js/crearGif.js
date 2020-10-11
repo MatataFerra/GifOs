@@ -60,27 +60,31 @@ class Progress {
 
     static loopProgressBar = (id, limit) => {
         
-        for(let i = 0; i < limit; i++){
-            let progressBar = document.getElementById(id);
-            let bar = document.createElement('div');
-            bar.classList.add('bar');
-            progressBar.appendChild(bar);
-        }
+            for(let i = 0; i < limit; i++){
+                let progressBar = document.getElementById(id);
+                let bar = document.createElement('div');
+                bar.classList.add('bar');
+                progressBar.appendChild(bar);
+            }
+
     }
 
     static reduceProgressBar = (id, limit) => {
         let progressBar = document.getElementById(id);
         let bars = document.getElementsByClassName('bar')
-        if(bars.length > limit){
-            for(let i = 0; i < bars.length; i++) {
-                progressBar.removeChild(bars[i])
+            if(bars.length > limit && bars.parentNode == progressBar){
+                debugger;
+                for(let i = 0; i < bars.length; i++) {
+                    debugger;
+                    progressBar.removeChild(bars[i])
+                }
             }
-        }
-        if(bars[0].classList.contains('barColor')){
-            for(let bar of bars){
-                bar.classList.remove('barColor')
+
+            if(bars[0].classList.contains('barColor')){
+                for(let bar of bars){
+                    bar.classList.remove('barColor')
+                }
             }
-        }
     }
 
     static clearColorProgress = () => {
@@ -128,10 +132,12 @@ let captureCamera = async (accessCamera) => {
 
 let testCamera = () => {
     if(crearGif.style.display = 'block'){
-        
-        setTimeout(()=>{
 
+        setTimeout(()=>{ 
             barraTexto.innerText = "Un Chequeo Antes de Empezar"
+            containerSubiendoGif.style.display = 'none';
+            cancelarSubida.style.display = 'none'
+            videoObjContainer.style.display = 'block';
             video.style.display = 'block';
             crearGif.style.display = 'none';
             srcObjetc.style.display = 'block';
