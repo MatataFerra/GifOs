@@ -1296,4 +1296,14 @@ body {
   text-decoration: none;
   color: #110038;
 }
+
+#cruzChequeo {
+  cursor: pointer;
+}
+
+#imgSrc {
+  height: 429px;
+  width: 500px;
+  background-color: #4180F6;
+}
 /*# sourceMappingURL=styles.css.map */

@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
     <title>gifOS</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
@@ -56,11 +57,12 @@
         </section>
         <section id="srcObjetc">
             <div class="barraChequearGif">
-                <p>Un Chequeo Antes de Empezar</p>
+                <p id="barraTexto">Un Chequeo Antes de Empezar</p>
                 <img src="./assets/button3.svg" alt="cruz" id="cruzChequeo">
             </div>
             <div class="videoObjContainer">
-                <video id="videoObj" playsinline></video>
+                <video id="videoObj" playsinline ></video>
+                <img src="" alt="" id="imgSrc">
             </div>
             <div class="containerComenzarCaptura" id="containerCaptura">
                 <div class="timerGuifo" id="timerGuifo">00:00:00:00</div>  
@@ -78,13 +80,11 @@
                 </div>
                 <div class="repetirSubir" id="repetirSubir">
                     <div class="repetir"><p>Repetir Captura</p></div>
-                    <div class="subir"><a href="#">Subir Guifo</a></div>
+                    <div class="subir" id="subir"><a href="#">Subir Guifo</a></div>
                 </div>
                 
             </div>
         </section>
-        <br>
-        <br>
 
         <section class="misGuifos">
             <div class="h1Sugs">
@@ -93,7 +93,7 @@
         </section>
     </main>
     <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script> -->
-    <script src="./node_modules/RecordRTC.js"></script>
+    <script src="./node_modules/recordrtc/RecordRTC.js"></script>
     <script src="./js/crearGif.js" type="module"></script>
     <script src="./js/cronometro.js" type="module"></script>
     <script src="./js/dark.js"></script>

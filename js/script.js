@@ -1,4 +1,8 @@
 //-------------------------------VARIABLES GLOBALES-------------------------------///
+
+const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
+//const APIKEY = process.env.APIKEY;
+
 const arrow = document.getElementById("arrowFunction");
 const buttonSearch = document.getElementById("buttonSearch");
 const inputSearch = document.getElementById("search");
@@ -193,7 +197,7 @@ searchsDone.addEventListener('click', (e)=>{
 })
 
 //----Solicitando a la API que busque la palabra---//
-const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
+
 
 function getSearchResults() {
   createButtonsFromArray ()
