@@ -60,7 +60,14 @@
                 <p id="barraTexto">Un Chequeo Antes de Empezar</p>
                 <img src="./assets/button3.svg" alt="cruz" id="cruzChequeo">
             </div>
-            <div class="videoObjContainer">
+            <div class="containerSubiendoGif" id="containerSubiendoGif">
+                <img src="./assets/globe_img.png" alt="" class="globeImg">
+                <p class="textSubiendoGuifo">Estamos subiendo tu guifo…</p>
+                <div class="uploadProgressBar" id="uploadProgressBar"></div>
+                <p class="tiempoRestante">Tiempo restante: <span>38 años</span> algunos minutos</p>
+                
+            </div>
+            <div class="videoObjContainer" id="videoObjContainer">
                 <video id="videoObj" playsinline ></video>
                 <img src="" alt="" id="imgSrc">
             </div>
@@ -79,10 +86,12 @@
                     <div class="listo" id="listo">Listo</div>
                 </div>
                 <div class="repetirSubir" id="repetirSubir">
-                    <div class="repetir"><p>Repetir Captura</p></div>
+                    <div class="repetir" id="repetir"><p>Repetir Captura</p></div>
                     <div class="subir" id="subir"><a href="#">Subir Guifo</a></div>
                 </div>
-                
+                <div class="cancelarSubida" id="cancelarSubida">
+                    <p>Cancelar</p>
+                </div>           
             </div>
         </section>
 
@@ -92,7 +101,6 @@
             </div>
         </section>
     </main>
-    <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script> -->
     <script src="./node_modules/recordrtc/RecordRTC.js"></script>
     <script src="./js/crearGif.js" type="module"></script>
     <script src="./js/cronometro.js" type="module"></script>

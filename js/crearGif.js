@@ -11,6 +11,9 @@ const progressBarContainer = document.getElementById('progressBarContainer');
 const repetirSubir = document.getElementById('repetirSubir');
 const listoCaptura = document.getElementById('listoCaptura');
 const barraTexto = document.getElementById('barraTexto');
+const containerSubiendoGif = document.getElementById('containerSubiendoGif');
+const videoObjContainer = document.getElementById('videoObjContainer');
+const cancelarSubida = document.getElementById('cancelarSubida')
 
 let video = document.getElementById('videoObj');
 let imgSrc = document.getElementById('imgSrc');
@@ -20,6 +23,8 @@ timerInit.timer.style.visibility = 'visible';
 listoCaptura.style.display = 'none';
 repetirSubir.style.display = 'none';
 imgSrc.style.display = 'none';
+cancelarSubida.style.display = 'none';
+
 
 let recorder = null;
 let gifBlob = null;
@@ -42,6 +47,71 @@ class Button {
         }
     }
 
+    removeListener = (listener) => {
+        this.id.removeEventListener('click', listener)
+    }
+
+    addListener = (listener) => {
+        this.id.addEventListener('click', listener)
+    }
+
+}
+
+class Progress {
+    constructor(id){
+        this.id = document.getElementById(id)
+        this.limit = 0;
+    }
+
+    static loopProgressBar = (id, limit) => {
+        
+        for(let i = 0; i < limit; i++){
+            let progressBar = document.getElementById(id);
+            let bar = document.createElement('div');
+            bar.classList.add('bar');
+            progressBar.appendChild(bar);
+        }
+    }
+
+    static reduceProgressBar = (id, limit) => {
+        let progressBar = document.getElementById(id);
+        let bars = document.getElementsByClassName('bar')
+        if(bars.length > limit){
+            for(let i = 0; i < bars.length; i++) {
+                progressBar.removeChild(bars[i])
+            }
+        }
+        if(bars[0].classList.contains('barColor')){
+            for(let bar of bars){
+                bar.classList.remove('barColor')
+            }
+        }
+    }
+
+    static clearColorProgress = () => {
+        let bars = document.getElementsByClassName('bar')
+        if(bars[0].classList.contains('barColor')){
+            for(let bar of bars){
+                bar.classList.remove('barColor')
+            }
+        }
+    }
+
+    static eliminateAll = (id) => {
+        let progressBar = document.getElementById(id);
+        //let bars = document.getElementsByClassName('bar')
+        // if(progressBar.hasChildNodes()){
+        //     for(let child of progressBar.childNodes) {
+        //         progressBar.removeChild(child)
+        //     }
+        // }
+
+        while(progressBar.hasChildNodes()){
+            progressBar.lastChild.remove();
+        }
+
+        
+    }
 }
 
 let captureCamera = async (accessCamera) => {
@@ -70,7 +140,9 @@ let captureCamera = async (accessCamera) => {
 
 let testCamera = () => {
     if(crearGif.style.display = 'block'){
+        
         setTimeout(()=>{
+
             barraTexto.innerText = "Un Chequeo Antes de Empezar"
             video.style.display = 'block';
             crearGif.style.display = 'none';
@@ -82,13 +154,6 @@ let testCamera = () => {
             listoCaptura.style.display = 'none';
             timerInit.stoping();
             timerInit.reseting();
-
-            let bars = document.getElementsByClassName('bar');
-            if(bars[0].classList.contains('barColor')){
-                for(let bar of bars){
-                    bar.classList.remove('barColor')
-                }
-            }  
             
         },100)
     }
@@ -99,6 +164,7 @@ let testCamera = () => {
 }
 
 let startRecord  = () => {
+    
     captureCamera( camera => { 
             video.srcObject = camera;
             imgSrc.srcObject = camera;
@@ -124,9 +190,10 @@ let startRecord  = () => {
             listoCaptura.style.display = 'flex';
             listoCaptura.classList.add('listoCaptura');
             comenzarCaptura.style.display = 'none';
+            cancelarSubida.style.display = 'none';
 
             timerInit.timer.style.visibility = 'visible';
-
+            
             barraTexto.innerText = "Capturando Tu Guifo"
     });
 
@@ -150,13 +217,15 @@ let stopRecordingCallback =  () => {
     progressBarContainer.style.visibility = 'visible';
     listoCaptura.style.display = 'none';
     repetirSubir.style.display = 'flex';
-
+    comenzarCaptura.style.display = 'none';
     barraTexto.innerText = "Vista Previa";
 
 }
 
 
-let stopRecord = () => { 
+let stopRecord = () => {
+    Progress.loopProgressBar('progressBar', 17)
+    Progress.reduceProgressBar('progressBar', 17)
     timerInit.stoping();
     gifRecord.stopRecording();
     recorder.stopRecording(stopRecordingCallback);
@@ -169,7 +238,7 @@ let playRecord = () => {
         video.loop = true;
         video.play();
 
-        setTimeout(move, 100)
+        setTimeout(move(forwardButton, playRecord, 16), 100)
         
 
     } catch (err) {
@@ -190,16 +259,16 @@ let deleteRecord = async () => {
         recorder = null;
         video.src = "";
         imgSrc.src = "";
+        srcObjetc.style.display = 'block';
+        timerInit.timer.style.visibility = 'hidden';
+        repetirSubir.style.display = 'none';
+        progressBarContainer.style.visibility = 'hidden';
 
         if(crearGif.style.display = 'none'){
             setTimeout(()=>{
                 video.style.display = 'block';
                 crearGif.style.display = 'none';
-                srcObjetc.style.display = 'block';
-                timerInit.timer.style.visibility = 'hidden';
-                repetirSubir.style.display = 'none';
-                comenzarCaptura.style.display = 'flex';
-                progressBarContainer.style.visibility = 'hidden';
+
             },500)
         }
         testCamera();
@@ -210,38 +279,28 @@ let deleteRecord = async () => {
     
 }
 
-for(let i = 0; i < 17; i++){
-    let progressBar = document.getElementById('progressBar');
-    let bar = document.createElement('div');
-    bar.classList.add('bar');
-    progressBar.appendChild(bar);
+
+let move = (buttonClass, listener, numberOfElements) => {
+    buttonClass.removeListener(listener)
+    secondsTimer = parseInt(timerInit.s * 20);
     
-}
-
-
-let move = () => {  
-    secondsTimer = parseInt(timerInit.s * 10);
     let interval = setInterval(frame, secondsTimer); 
     let progress = 1;
-
     let bars = document.getElementsByClassName('bar');
-    if(bars[0].classList.contains('barColor')){
-        for(let bar of bars){
-            bar.classList.remove('barColor')
-        }
+
+    Progress.reduceProgressBar('progressBar', 17)
+
+    if(bars[numberOfElements].classList.contains('barColor')){
+        video.pause();      
     }
 
-    if(bars[16].classList.contains('barColor')){
-        video.pause();
-    }
-
-    function frame() {
-        
+    function frame() {     
         if (progress >= 100) {
             clearInterval(interval);
-            progress = 1
+            progress = 0
             video.loop = false;
             video.autoplay = false;
+            buttonClass.addListener(listener)
             
         } else {            
             progress++;        
@@ -279,44 +338,58 @@ let close = () => {
 }
 
 
-
 let upload = () => {
     const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
+    containerSubiendoGif.style.display = 'flex';
+    videoObjContainer.style.display = 'none';
+    comenzarCaptura.style.display = 'none';
+    cancelarSubida.style.display = 'block';
+    timerInit.timer.style.visibility = 'hidden';
+    repetirSubir.style.display = 'none';
+    progressBarContainer.style.visibility = 'hidden';
+    Progress.eliminateAll('progressBar');
+    Progress.loopProgressBar('uploadProgressBar', 23);
+    progressUpload(23);
+    barraTexto.innerText = 'Subiendo Guifo...'
+
     const formulario = new FormData();
     formulario.append("file",gifBlob,"myGif.gif");
 
-    fetch(`https://upload.giphy.com/v1/gifs?api_key=${APIKEY}`, {       
-        method: "POST",
-        body: formulario,
-    })
-    .then(response => {
-        if (response.status === 200) {
-            console.log('Gif subido!');
-            return response.json();
-        } else {
-            console.log('error en la subida')
-        }
-    })
 
-    .then(data => {
-        fetch(
-            `https://api.giphy.com/v1/gifs/${data.data.id}?&api_key=xBWsI1LWcGLChS6L9d5ucODsG0BfkNEx`
-        )
-            .then(response => {
-                return response.json();
-            })
-            .then( res => {
-                console.log('segundo fetch')
-                console.log(res.data.id);
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    })
+    //ABAJO Código que funciona, para subir los gif, para test se comentó
 
-    .catch(err => {
-        console.log(err)
-    })
+    // fetch(`https://upload.giphy.com/v1/gifs?api_key=${APIKEY}`, {       
+    //     method: "POST",
+    //     body: formulario,
+    // })
+    // .then(response => {
+    //     if (response.status === 200) {
+    //         console.log('Gif subido!');
+    //         return response.json();
+    //     } else {
+    //         console.log('error en la subida')
+    //     }
+    // })
+
+    // .then(data => {
+    //     fetch(
+    //         `https://api.giphy.com/v1/gifs/${data.data.id}?&api_key=xBWsI1LWcGLChS6L9d5ucODsG0BfkNEx`
+    //     )
+    //         .then(response => {
+    //             return response.json();
+    //         })
+    //         .then( res => {
+    //             console.log('segundo fetch')
+    //             console.log(res.data.id);
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // })
+
+    // .catch(err => {
+    //     console.log(err)
+    // })
 }
 
 let clearTracks = () => {
@@ -330,11 +403,48 @@ let clearTracks = () => {
     }
 }
 
+let progressUpload = (numberOfElements) => {
+
+    secondsTimer = parseInt(timerInit.s*20);
+
+    let progress = 1;
+    let bars = document.getElementsByClassName('bar');
+    Progress.reduceProgressBar('uploadProgressBar', numberOfElements)
+    
+    let interval = setInterval(frame, secondsTimer); 
+    function frame() {  
+ 
+        if (progress >= 300) {
+            //interval = setInterval(frame, secondsTimer);
+            //clearInterval(interval);
+            Progress.clearColorProgress();
+            progress = 1
+        } else if (progress > 66 && progress < 99) {
+            progress++;        
+            let count = Math.floor(progress / (150 / bars.length));
+			count > bars.length - 1 ? (count = bars.length - 1) : null;
+            bars[count].classList.add("barColor");
+        } else if (progress < 65) {
+            progress++;        
+            let count = Math.floor(progress / (130 / bars.length));
+			count > bars.length - 1 ? (count = bars.length - 1) : null;
+            bars[count].classList.add("barColor");
+        } else {            
+            progress++;        
+            let count = Math.floor(progress / (300 / bars.length));
+			count > bars.length - 1 ? (count = bars.length - 1) : null;
+            bars[count].classList.add("barColor");
+            
+            
+        }
+    }
+}
+
 
 let buttonStart = new Button('comenzarButton', testCamera);
 let buttonCapturar = new Button('capturar', startRecord);
 let buttonStop = new Button('listo', stopRecord);
-let buttonDelete = new Button('repetirSubir', deleteRecord);
+let buttonDelete = new Button('repetir', deleteRecord);
 let forwardButton = new Button('forward', playRecord);
 let closeButton = new Button('cruzChequeo', close);
 let uploadedButton = new Button('subir', upload)

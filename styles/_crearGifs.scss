@@ -89,9 +89,9 @@
         border: 1px solid #110038;
         box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
         text-align: center;
-        line-height: 36px;
-        
+        line-height: 36px;       
         cursor: pointer;
+
         &:hover {
             outline: 1px dotted #110038;
             outline-offset: -4px;
@@ -155,6 +155,9 @@
     background: #FFFFFF;
     border: 1px solid #979797;
     box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+
+    // para test
+    //display: none;
 }
 
 .buttonsContainer {
@@ -277,7 +280,7 @@ $progress: 25px;
 
 
 .progressBar{
-    box-shadow: inset 2px 2px 0 0 #FFFCFC, inset -2px -2px 0 0 #000000;
+    box-shadow: inset -2px -2px 0 0 #FFFCFC, inset 2px 2px 0 0 #000000;
     height: $progress;
     display: flex;
     background: transparent;
@@ -305,6 +308,10 @@ $progress: 25px;
     padding: 0.3rem;
     height: $progress;
     width: $progress;
+
+    &:active {
+        box-shadow: inset 1px 1px 0 0 #997D97, inset -1px -1px 0 0 #FFFFFF;
+    }
 }
 
 
@@ -340,4 +347,53 @@ $progress: 25px;
     height: 429px;
     width: 500px;
     background-color: #4180F6;
+}
+
+.containerSubiendoGif {
+    @extend .buttonsCrearGif;
+    @extend .videoObjContainer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .textSubiendoGuifo {
+        font-weight: bold;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+        font-size: 16px;
+    }
+
+    .tiempoRestante {
+        font-size: 12px;
+        color: rgba(17,0,56,0.64);
+
+        span{
+            text-decoration: line-through;
+        }
+    }
+
+    
+}
+
+.uploadProgressBar{
+    @extend .progressBar;
+    background: #B4B4B4;
+    
+}
+
+.cancelarSubida {
+    width: 144px;
+    height: 36px;
+    background: #FFF4FD;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    text-align: center;
+    line-height: 36px;       
+    margin-top: 1rem;
+    cursor: pointer;
+        p {
+            text-decoration: none;
+            color: #110038;
+        }
 }
