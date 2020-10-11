@@ -13,7 +13,12 @@ const listoCaptura = document.getElementById('listoCaptura');
 const barraTexto = document.getElementById('barraTexto');
 const containerSubiendoGif = document.getElementById('containerSubiendoGif');
 const videoObjContainer = document.getElementById('videoObjContainer');
-const cancelarSubida = document.getElementById('cancelarSubida')
+const cancelarSubida = document.getElementById('cancelarSubida');
+const textSubiendoGuifo = document.getElementById('textSubiendoGuifo');
+
+//Para cancelar subida de gif
+const controller = new AbortController()
+const signal = controller.signal;
 
 let video = document.getElementById('videoObj');
 let imgSrc = document.getElementById('imgSrc');
@@ -25,7 +30,6 @@ repetirSubir.style.display = 'none';
 imgSrc.style.display = 'none';
 cancelarSubida.style.display = 'none';
 
-
 let recorder = null;
 let gifBlob = null;
 let gifRecord = null;
@@ -36,15 +40,6 @@ class Button {
     constructor(id, listener) {   
         this.id = document.getElementById(`${id}`);
         this.listener = this.id.addEventListener('click', listener); 
-    }
-
-    buttonSelect = (buttonStatus) => {
-        try {
-            this.id.disabled = buttonStatus;
-
-        } catch (err) {
-            console.log(err)
-        }
     }
 
     removeListener = (listener) => {
@@ -99,18 +94,11 @@ class Progress {
 
     static eliminateAll = (id) => {
         let progressBar = document.getElementById(id);
-        //let bars = document.getElementsByClassName('bar')
-        // if(progressBar.hasChildNodes()){
-        //     for(let child of progressBar.childNodes) {
-        //         progressBar.removeChild(child)
-        //     }
-        // }
 
         while(progressBar.hasChildNodes()){
             progressBar.lastChild.remove();
         }
 
-        
     }
 }
 
@@ -164,7 +152,6 @@ let testCamera = () => {
 }
 
 let startRecord  = () => {
-    
     captureCamera( camera => { 
             video.srcObject = camera;
             imgSrc.srcObject = camera;
@@ -249,7 +236,6 @@ let playRecord = () => {
 
 let deleteRecord = async () => {
     try {
-
         await recorder.reset();
         await recorder.destroy();
         gifRecord.reset();
@@ -340,6 +326,10 @@ let close = () => {
 
 let upload = () => {
     const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
+    
+    textSubiendoGuifo.innerText = 'Estamos subiendo tu guifo…';
+    textSubiendoGuifo.classList.remove('textSubiendoGuifo');
+    barraTexto.innerText = 'Subiendo Guifo...'
     containerSubiendoGif.style.display = 'flex';
     videoObjContainer.style.display = 'none';
     comenzarCaptura.style.display = 'none';
@@ -347,10 +337,13 @@ let upload = () => {
     timerInit.timer.style.visibility = 'hidden';
     repetirSubir.style.display = 'none';
     progressBarContainer.style.visibility = 'hidden';
+
+    abortingButton.removeListener(close);
+    abortingButton.addListener(aborting);
+
     Progress.eliminateAll('progressBar');
     Progress.loopProgressBar('uploadProgressBar', 23);
     progressUpload(23);
-    barraTexto.innerText = 'Subiendo Guifo...'
 
     const formulario = new FormData();
     formulario.append("file",gifBlob,"myGif.gif");
@@ -358,38 +351,44 @@ let upload = () => {
 
     //ABAJO Código que funciona, para subir los gif, para test se comentó
 
-    // fetch(`https://upload.giphy.com/v1/gifs?api_key=${APIKEY}`, {       
-    //     method: "POST",
-    //     body: formulario,
-    // })
-    // .then(response => {
-    //     if (response.status === 200) {
-    //         console.log('Gif subido!');
-    //         return response.json();
-    //     } else {
-    //         console.log('error en la subida')
-    //     }
-    // })
+    fetch(`https://upload.giphy.com/v1/gifs?api_key=${APIKEY}`, {       
+        method: "POST",
+        body: formulario,
+        signal: signal
+    })
+    .then(response => {
+        if (response.status === 200) {
+            console.log('Gif subido!');
+            return response.json();
+        } else {
+            console.log('error en la subida')
+        }
+    })
 
-    // .then(data => {
-    //     fetch(
-    //         `https://api.giphy.com/v1/gifs/${data.data.id}?&api_key=xBWsI1LWcGLChS6L9d5ucODsG0BfkNEx`
-    //     )
-    //         .then(response => {
-    //             return response.json();
-    //         })
-    //         .then( res => {
-    //             console.log('segundo fetch')
-    //             console.log(res.data.id);
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // })
+    .then(data => {
+        fetch(
+            `https://api.giphy.com/v1/gifs/${data.data.id}?&api_key=xBWsI1LWcGLChS6L9d5ucODsG0BfkNEx`
+        )
+            .then(response => {
+                return response.json();
+            })
+            .then( res => {
+                
+                console.log('console del res')
+                console.log(res)
+                console.log('console del data')
+                console.log(res.data);
+                console.log('console del id')
+                console.log(res.data.id);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    })
 
-    // .catch(err => {
-    //     console.log(err)
-    // })
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 let clearTracks = () => {
@@ -402,6 +401,7 @@ let clearTracks = () => {
         tracks.forEach(track => {track.stop()})
     }
 }
+let interval = null;
 
 let progressUpload = (numberOfElements) => {
 
@@ -411,7 +411,7 @@ let progressUpload = (numberOfElements) => {
     let bars = document.getElementsByClassName('bar');
     Progress.reduceProgressBar('uploadProgressBar', numberOfElements)
     
-    let interval = setInterval(frame, secondsTimer); 
+    interval = setInterval(frame, secondsTimer); 
     function frame() {  
  
         if (progress >= 300) {
@@ -440,11 +440,22 @@ let progressUpload = (numberOfElements) => {
     }
 }
 
+let aborting = ()=>{ 
+    textSubiendoGuifo.innerText = 'Operación cancelada';
+    textSubiendoGuifo.classList.add('textSubiendoGuifo');
+    controller.abort();
+    clearInterval(interval);
+    console.warn('Subida cancelada por el usuario...');
+    abortingButton.removeListener(aborting);
+    abortingButton.addListener(close);
+}
 
+//Creación de botones
 let buttonStart = new Button('comenzarButton', testCamera);
 let buttonCapturar = new Button('capturar', startRecord);
 let buttonStop = new Button('listo', stopRecord);
 let buttonDelete = new Button('repetir', deleteRecord);
 let forwardButton = new Button('forward', playRecord);
 let closeButton = new Button('cruzChequeo', close);
-let uploadedButton = new Button('subir', upload)
+let uploadedButton = new Button('subir', upload);
+let abortingButton = new Button('cancelarSubida', aborting);
