@@ -27,7 +27,9 @@
     outline: 1px dotted #110038!important;
     outline-offset: -4px!important;
   }
+
 }
+
 
 .textDark{
   color: #fff!important;
@@ -137,9 +139,62 @@
     border: 1px solid rgba(51,53,143,0.20)!important;
     box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF!important;
   }
-
+  
   &:hover a{
+      color: #fff!important;
+  }
+
+  &:hover p{
     color: #fff!important;
+}
+  
+}
+
+.listoCapturaDark {
+  background: #FF6161!important;
+  border: 1px solid #110038!important;
+  box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF!important;
+
+  &:hover .listoSvg,
+  &:hover .listo {
+      outline: 1px dotted #110038;
+      outline-offset: -4px;
+  }
+}
+.barColorDark {
+  background: #EE3EFE!important;
+}
+
+.buttonDarkCrearGif{
+  background-color: #ee3efe!important;
+  border: 1px solid #110038!important;
+  box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff!important;
+  color: #fff!important;
+
+  &:hover .cameraSvg,
+  &:hover .capturar {
+    background-color: #CE36DB!important;
+    outline: 1px dotted #110038!important;
+    outline-offset: -4px!important;
   }
 }
 
+
+.repetirYSubirDark{
+  background: #110038!important;
+  border: 1px solid #B4B4B4!important;
+  box-shadow: inset -1px -1px 0 0 #5C5C5C, inset 1px 1px 0 0 #FFF4FD!important;
+
+  p {
+    color: #FFF!important;
+  }
+
+  &:hover{
+    outline: 1px dotted #FFF!important;
+    outline-offset: -4px!important;
+  }
+}
+
+.progressBarDark{
+  background: #999999!important;
+}

@@ -15,6 +15,7 @@ const containerSubiendoGif = document.getElementById('containerSubiendoGif');
 const videoObjContainer = document.getElementById('videoObjContainer');
 const cancelarSubida = document.getElementById('cancelarSubida');
 const textSubiendoGuifo = document.getElementById('textSubiendoGuifo');
+const finishUpload = document.getElementById('finishUpload');
 
 //Para cancelar subida de gif
 const controller = new AbortController()
@@ -29,11 +30,18 @@ listoCaptura.style.display = 'none';
 repetirSubir.style.display = 'none';
 imgSrc.style.display = 'none';
 cancelarSubida.style.display = 'none';
+finishUpload.style.display = 'none';
 
 let recorder = null;
 let gifBlob = null;
 let gifRecord = null;
 let videoBlob = null;
+let interval = null;
+let intervalUpload = null;
+let idFetch = '';
+let link = '';
+let gifArray = [];
+
 
 
 class Button {
@@ -54,7 +62,7 @@ class Button {
 
 class Progress {
     constructor(id){
-        this.id = document.getElementById(id)
+        this.id = document.getElementById(id);
         this.limit = 0;
     }
 
@@ -72,26 +80,47 @@ class Progress {
     static reduceProgressBar = (id, limit) => {
         let progressBar = document.getElementById(id);
         let bars = document.getElementsByClassName('bar')
-            if(bars.length > limit && bars.parentNode == progressBar){
-                debugger;
+            if(bars.length > limit && bars.parentNode == progressBar){         
                 for(let i = 0; i < bars.length; i++) {
-                    debugger;
                     progressBar.removeChild(bars[i])
                 }
             }
+            if(document.body.classList.contains('darkThemeBody')){
 
-            if(bars[0].classList.contains('barColor')){
-                for(let bar of bars){
-                    bar.classList.remove('barColor')
+                if(bars[0].classList.contains('barColorDark')){
+                    for(let bar of bars){
+                        bar.classList.remove('barColorDark')
+                    }
+                }
+
+            } else {
+
+                if(bars[0].classList.contains('barColor')){
+                    for(let bar of bars){
+                        bar.classList.remove('barColor')
+                    }
                 }
             }
     }
 
     static clearColorProgress = () => {
-        let bars = document.getElementsByClassName('bar')
-        if(bars[0].classList.contains('barColor')){
-            for(let bar of bars){
-                bar.classList.remove('barColor')
+
+        if(document.body.classList.contains('darkThemeBody')) {
+
+            let bars = document.getElementsByClassName('bar')
+            if(bars[0].classList.contains('barColorDark')){
+                for(let bar of bars){
+                    bar.classList.remove('barColorDark')
+                }
+            }
+
+        } else {
+
+            let bars = document.getElementsByClassName('bar')
+            if(bars[0].classList.contains('barColor')){
+                for(let bar of bars){
+                    bar.classList.remove('barColor')
+                }
             }
         }
     }
@@ -192,8 +221,6 @@ let startRecord  = () => {
 
 };
 
-
-
 let stopRecordingCallback =  () => {
     
     video.src = video.srcObject = null;
@@ -215,15 +242,13 @@ let stopRecordingCallback =  () => {
 
 }
 
-
 let stopRecord = () => {
-    Progress.loopProgressBar('progressBar', 17)
-    Progress.reduceProgressBar('progressBar', 17)
+    Progress.loopProgressBar('progressBar', 17);
+    Progress.reduceProgressBar('progressBar', 17);
     timerInit.stoping();
     gifRecord.stopRecording();
     recorder.stopRecording(stopRecordingCallback);
 };
-
 
 let playRecord = () => {
     try{
@@ -233,12 +258,10 @@ let playRecord = () => {
 
         setTimeout(move(forwardButton, playRecord, 16), 100)
         
-
     } catch (err) {
         console.log(err.message);
     }
 }
-
 
 let deleteRecord = async () => {
     try {
@@ -246,6 +269,11 @@ let deleteRecord = async () => {
         await recorder.destroy();
         gifRecord.reset();
         gifRecord.destroy();
+
+        Progress.eliminateAll('uploadProgressBar');
+        Progress.eliminateAll('progressBar');
+
+        secondsTimer = 0;
 
         gifRecord = null;
         recorder = null;
@@ -270,8 +298,9 @@ let deleteRecord = async () => {
     }
     
 }
+// Fin de acciones de la cámara
 
-
+//Barra de carga cuando se presiona play
 let move = (buttonClass, listener, numberOfElements) => {
     buttonClass.removeListener(listener)
     secondsTimer = parseInt(timerInit.s * 20);
@@ -281,9 +310,15 @@ let move = (buttonClass, listener, numberOfElements) => {
     let bars = document.getElementsByClassName('bar');
 
     Progress.reduceProgressBar('progressBar', 17)
+    if(document.body.classList.contains('darkThemeBody')){
+        if(bars[numberOfElements].classList.contains('barColorDark')){
+            video.pause();      
+        }
+    } else {
 
-    if(bars[numberOfElements].classList.contains('barColor')){
-        video.pause();      
+        if(bars[numberOfElements].classList.contains('barColor')){
+            video.pause();      
+        }
     }
 
     function frame() {     
@@ -294,27 +329,36 @@ let move = (buttonClass, listener, numberOfElements) => {
             video.autoplay = false;
             buttonClass.addListener(listener)
             
-        } else {            
+        } else if(document.body.classList.contains('darkThemeBody')){         
+            progress++;        
+            let count = Math.floor(progress / (100 / bars.length));
+			count > bars.length - 1 ? (count = bars.length - 1) : null;
+            bars[count].classList.add("barColorDark");
+
+        } else {
             progress++;        
             let count = Math.floor(progress / (100 / bars.length));
 			count > bars.length - 1 ? (count = bars.length - 1) : null;
             bars[count].classList.add("barColor");
-            
-            
         }
     }
 }
 
+//Función a la hora de cerrar la ventana
 let close = () => {
-
     try {
         clearTracks();
+
+        Progress.eliminateAll('uploadProgressBar');
+        Progress.eliminateAll('progressBar');
 
         srcObjetc.style.display = "none";
         crearGif.style.display = "block";
 
         timerInit.stoping();
         timerInit.reseting();
+
+        secondsTimer = 0;
 
         gifRecord = null;
         imgSrc.srcObject = ''
@@ -323,13 +367,12 @@ let close = () => {
         recorder = null;
         video.src = "";
 
-
     } catch (err) {
         console.log(err.message)
     }
 }
 
-
+//Subir el gif a la API
 let upload = () => {
     const APIKEY = "1gchfU6E5SK40hPSSKXsFAKZZYljRhxa";
     
@@ -349,13 +392,12 @@ let upload = () => {
 
     Progress.eliminateAll('progressBar');
     Progress.loopProgressBar('uploadProgressBar', 23);
+    Progress.reduceProgressBar('uploadProgressBar', 23);
     progressUpload(23);
 
     const formulario = new FormData();
     formulario.append("file",gifBlob,"myGif.gif");
 
-
-    //ABAJO Código que funciona, para subir los gif, para test se comentó
 
     fetch(`https://upload.giphy.com/v1/gifs?api_key=${APIKEY}`, {       
         method: "POST",
@@ -364,6 +406,7 @@ let upload = () => {
     })
     .then(response => {
         if (response.status === 200) {
+            alertMsgPopUp('Gif Subido');
             console.log('Gif subido!');
             return response.json();
         } else {
@@ -379,13 +422,15 @@ let upload = () => {
                 return response.json();
             })
             .then( res => {
-                
-                console.log('console del res')
-                console.log(res)
-                console.log('console del data')
-                console.log(res.data);
-                console.log('console del id')
-                console.log(res.data.id);
+                finishUpload.style.display = 'block';
+                srcObjetc.style.display = 'none';
+                clearInterval(intervalUpload);
+
+                idFetch = res.data.id;
+                const gifUploaded = document.getElementById('gifUploaded');
+                link = res.data.images.original.url;
+                gifUploaded.src = link;
+
             })
             .catch(err => {
                 console.log(err)
@@ -397,6 +442,7 @@ let upload = () => {
     })
 }
 
+//Limpiar de tracks y apagar la cámara
 let clearTracks = () => {
     if(video.srcObject){
         let tracks = video.srcObject.getTracks();
@@ -407,8 +453,8 @@ let clearTracks = () => {
         tracks.forEach(track => {track.stop()})
     }
 }
-let interval = null;
 
+//Barra de carga de subida
 let progressUpload = (numberOfElements) => {
 
     secondsTimer = parseInt(timerInit.s*20);
@@ -417,44 +463,200 @@ let progressUpload = (numberOfElements) => {
     let bars = document.getElementsByClassName('bar');
     Progress.reduceProgressBar('uploadProgressBar', numberOfElements)
     
-    interval = setInterval(frame, secondsTimer); 
+    intervalUpload = setInterval(frame, secondsTimer); 
     function frame() {  
  
         if (progress >= 300) {
-            //interval = setInterval(frame, secondsTimer);
-            //clearInterval(interval);
+
             Progress.clearColorProgress();
             progress = 1
-        } else if (progress > 66 && progress < 99) {
-            progress++;        
-            let count = Math.floor(progress / (150 / bars.length));
-			count > bars.length - 1 ? (count = bars.length - 1) : null;
-            bars[count].classList.add("barColor");
-        } else if (progress < 65) {
-            progress++;        
-            let count = Math.floor(progress / (130 / bars.length));
-			count > bars.length - 1 ? (count = bars.length - 1) : null;
-            bars[count].classList.add("barColor");
-        } else {            
-            progress++;        
-            let count = Math.floor(progress / (300 / bars.length));
-			count > bars.length - 1 ? (count = bars.length - 1) : null;
-            bars[count].classList.add("barColor");
-            
-            
+        } else if(document.body.classList.contains('darkThemeBody')) {
+            if (progress > 66 && progress < 99) {
+                progress++;        
+                let count = Math.floor(progress / (150 / bars.length));
+                count > bars.length - 1 ? (count = bars.length - 1) : null;
+                bars[count].classList.add("barColorDark");
+            } else if (progress < 65) {
+                progress++;        
+                let count = Math.floor(progress / (130 / bars.length));
+                count > bars.length - 1 ? (count = bars.length - 1) : null;
+                bars[count].classList.add("barColorDark");
+            } else {            
+                progress++;        
+                let count = Math.floor(progress / (300 / bars.length));
+                count > bars.length - 1 ? (count = bars.length - 1) : null;
+                bars[count].classList.add("barColorDark");
+                
+                
+            }
+        } else {
+            if (progress > 66 && progress < 99) {
+                progress++;        
+                let count = Math.floor(progress / (150 / bars.length));
+                count > bars.length - 1 ? (count = bars.length - 1) : null;
+                bars[count].classList.add("barColor");
+            } else if (progress < 65) {
+                progress++;        
+                let count = Math.floor(progress / (130 / bars.length));
+                count > bars.length - 1 ? (count = bars.length - 1) : null;
+                bars[count].classList.add("barColor");
+            } else {            
+                progress++;        
+                let count = Math.floor(progress / (300 / bars.length));
+                count > bars.length - 1 ? (count = bars.length - 1) : null;
+                bars[count].classList.add("barColor");
+
+            }
         }
+ 
     }
 }
+
+//Abortar fetch de la API
 
 let aborting = ()=>{ 
     textSubiendoGuifo.innerText = 'Operación cancelada';
     textSubiendoGuifo.classList.add('textSubiendoGuifo');
     controller.abort();
-    clearInterval(interval);
+    clearInterval(intervalUpload);
+    alertMsgPopUp('Cancelaste la subida');
     console.warn('Subida cancelada por el usuario...');
     abortingButton.removeListener(aborting);
     abortingButton.addListener(close);
 }
+
+//Pantalla de gif subido
+let doneFinish = () => {
+    finishUpload.style.display = 'none';
+    srcObjetc.style.display = 'none';
+    crearGif.style.display = 'block';
+
+    Progress.eliminateAll('uploadProgressBar');
+
+    let linkStorage = link;
+    gifArray.push(linkStorage)
+    let gifArrayString = JSON.stringify(gifArray);
+    localStorage.setItem('gifCreate', gifArrayString)
+    
+    const containerGifCreated = document.getElementById('containerGifCreated');
+    let imgUp = document.createElement('img');
+    imgUp.classList.add('imgUp')
+    imgUp.src = linkStorage;
+    containerGifCreated.appendChild(imgUp)
+
+}
+
+//Carga del Local Storage
+function loadStorage ()  {
+    if(localStorage.gifCreate){
+        let loadLinkArray = JSON.parse(localStorage.getItem('gifCreate'));
+        gifArray = loadLinkArray;
+        const containerGifCreated = document.getElementById('containerGifCreated');
+        gifArray.forEach( gif => {
+            let imgUp = document.createElement('img');
+            imgUp.classList.add('imgUp');
+            imgUp.src = gif;
+            containerGifCreated.appendChild(imgUp)
+        })
+    }
+}
+
+//Comprobar si hay elementos en el LS
+if(localStorage.gifCreate) {
+    loadStorage();
+}
+
+//Función para bajarse el Gif creado
+let downloadCreatedGif = async () => {
+    const fetchedGif = fetch(`https://media.giphy.com/media/${idFetch}/giphy.gif`);
+    const blobGif = (await fetchedGif).blob();
+    const urlGif = URL.createObjectURL(await blobGif);
+    alertMsgPopUp('Descargando gif a tu compu');
+    console.log('Descargando gif a su computadora...')
+    const gifDownload = document.createElement("a");
+    gifDownload.href = urlGif;
+    gifDownload.download = "your-Gif.gif";
+    gifDownload.style = 'display: "none"';
+    document.body.appendChild(gifDownload);
+    gifDownload.click();
+    document.body.removeChild(gifDownload);
+}
+
+//Función para copiarse el gif
+let copyLinkOfGif = () => {
+    let linkToCopy = document.createElement("input");
+
+    linkToCopy.value = `https://giphy.com/gifs/${idFetch}`;
+    document.body.appendChild(linkToCopy);
+    linkToCopy.select();
+    document.execCommand("copy");
+    console.log('link copiado!');
+    alertMsgPopUp('Link Copiado!');
+    document.body.removeChild(linkToCopy);
+}
+
+
+//Mensaje de alerta al hacer una acción
+let alertMsgPopUp = (mensajeUsuario) => {
+    //debugger;
+    let alertMsg = document.createElement('section');
+    alertMsg.classList.add('alertMsg');
+    alertMsg.innerHTML = `
+        <div class="barraAlertMsg">
+        <p>Mesaje para el Usuario</p>
+        <img src="./assets/button3.svg" alt="cruz" id="cruzAlert" class="cruzChequeo">
+        </div>
+        <div class="containerAlertMsg">
+        <img src="./assets/attention.png" alt="" class="attentionImg">
+        <p class="randomText" id="">${mensajeUsuario}</p>
+        </div>`
+    
+    
+    document.body.appendChild(alertMsg);
+
+    let blurrElements = [];
+    let navBar = document.querySelector('.navBar');
+    let misGuifos = document.querySelector('.misGuifos');
+
+    
+    blurrElements.push(navBar, misGuifos, crearGif, srcObjetc, finishUpload)
+    
+    for(let elem of blurrElements){
+        elem.classList.add('blurryBackground');
+    }
+    setTimeout(()=>{
+        let cruzAlert = document.getElementById('cruzAlert')
+        cruzAlert.addEventListener('click', closeAlertMsgPopUp)   
+    }, 100)
+    closeButton.removeListener(close);
+}
+
+let closeAlertMsgPopUp = () =>{
+    
+    let alertMsg = document.querySelector('.alertMsg');
+    alertMsg.classList.remove('alertMsg');
+
+    let blurrElements = [];
+    let navBar = document.querySelector('.navBar');
+    let misGuifos = document.querySelector('.misGuifos');
+    
+    blurrElements.push(navBar, misGuifos, crearGif, srcObjetc, finishUpload)
+    
+    for(let elem of blurrElements){
+        elem.classList.remove('blurryBackground');
+    }
+
+//    setTimeout(()=>{
+    let cruzAlert = document.getElementById('cruzAlert')
+    cruzAlert.removeEventListener('click', closeAlertMsgPopUp)   
+//    }, 100)
+    
+    closeButton.addListener(close);
+
+    alertMsg.innerHTML = ``
+}
+
+
 
 //Creación de botones
 let buttonStart = new Button('comenzarButton', testCamera);
@@ -465,3 +667,8 @@ let forwardButton = new Button('forward', playRecord);
 let closeButton = new Button('cruzChequeo', close);
 let uploadedButton = new Button('subir', upload);
 let abortingButton = new Button('cancelarSubida', aborting);
+let downloadButton = new Button('descargarEnlace', downloadCreatedGif);
+let copyLinkButton = new Button('copiarEnlace', copyLinkOfGif);
+let finishUpButton = new Button('listoUpload', doneFinish);
+
+

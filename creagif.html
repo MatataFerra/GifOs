@@ -58,7 +58,7 @@
         <section id="srcObjetc">
             <div class="barraChequearGif">
                 <p id="barraTexto">Un Chequeo Antes de Empezar</p>
-                <img src="./assets/button3.svg" alt="cruz" id="cruzChequeo">
+                <img src="./assets/button3.svg" alt="cruz" id="cruzChequeo" class="cruzChequeo">
             </div>
             <div class="containerSubiendoGif" id="containerSubiendoGif">
                 <img src="./assets/globe_img.png" alt="" class="globeImg">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="repetirSubir" id="repetirSubir">
                     <div class="repetir" id="repetir"><p>Repetir Captura</p></div>
-                    <div class="subir" id="subir"><a href="#">Subir Guifo</a></div>
+                    <div class="subir" id="subir"><p>Subir Guifo</p></div>
                 </div>
                 <div class="cancelarSubida" id="cancelarSubida">
                     <p>Cancelar</p>
@@ -95,12 +95,32 @@
             </div>
         </section>
 
+        <section class="finishUpload" id="finishUpload">
+            <div class="barraSubidoConExito">
+                <p>Guifo Subido Con Éxito</p>
+                <img src="./assets/button3.svg" alt="cruz" id="cruzChequeo" class="cruzChequeo">
+            </div>
+
+            <div class="containerSubidoConExito">
+                <img src="" alt="" id="gifUploaded">
+                <div class="containerButtons">
+                    <p class="textExito">Guifo creado con éxito</p>
+                    <div class="copiarEnlace" id="copiarEnlace">Copiar Enlace Guifo</div>
+                    <div class="descargarEnlace" id="descargarEnlace">Descargar Guifo</div>
+                    <div class="listoUpload" id="listoUpload">Listo</div>
+                </div>
+            </div>
+        </section>
+
         <section class="misGuifos">
             <div class="h1Sugs">
                 <h1 class="mainTittle">Mis Guifos</h1>
             </div>
+            <div class="containerGifCreated" id="containerGifCreated"></div>
         </section>
+
     </main>
+
     <script src="./node_modules/recordrtc/RecordRTC.js"></script>
     <script src="./js/crearGif.js" type="module"></script>
     <script src="./js/cronometro.js" type="module"></script>

@@ -15,7 +15,6 @@ body {
 }
 
 #alertMsg {
-  display: none;
   font-size: 1.5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -182,6 +181,62 @@ body {
 
 .cancelarGifDark:hover a {
   color: #fff !important;
+}
+
+.cancelarGifDark:hover p {
+  color: #fff !important;
+}
+
+.listoCapturaDark {
+  background: #FF6161 !important;
+  border: 1px solid #110038 !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF !important;
+          box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF !important;
+}
+
+.listoCapturaDark:hover .listoSvg,
+.listoCapturaDark:hover .listo {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+.barColorDark {
+  background: #EE3EFE !important;
+}
+
+.buttonDarkCrearGif {
+  background-color: #ee3efe !important;
+  border: 1px solid #110038 !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff !important;
+          box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #ffffff !important;
+  color: #fff !important;
+}
+
+.buttonDarkCrearGif:hover .cameraSvg,
+.buttonDarkCrearGif:hover .capturar {
+  background-color: #CE36DB !important;
+  outline: 1px dotted #110038 !important;
+  outline-offset: -4px !important;
+}
+
+.repetirYSubirDark {
+  background: #110038 !important;
+  border: 1px solid #B4B4B4 !important;
+  -webkit-box-shadow: inset -1px -1px 0 0 #5C5C5C, inset 1px 1px 0 0 #FFF4FD !important;
+          box-shadow: inset -1px -1px 0 0 #5C5C5C, inset 1px 1px 0 0 #FFF4FD !important;
+}
+
+.repetirYSubirDark p {
+  color: #FFF !important;
+}
+
+.repetirYSubirDark:hover {
+  outline: 1px dotted #FFF !important;
+  outline-offset: -4px !important;
+}
+
+.progressBarDark {
+  background: #999999 !important;
 }
 
 .navBar {
@@ -736,6 +791,10 @@ body {
   border: 0.3px dotted #110038;
 }
 
+.navBar .navigation .myGif a {
+  text-decoration: none;
+}
+
 .navBar .navigation .myGif span {
   color: #110038;
   font-size: 16px;
@@ -942,13 +1001,14 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .flexCrearGif .arrowCrearGif {
   margin-right: 0.5rem;
 }
 
-.crearGif, #srcObjetc {
+.crearGif, #srcObjetc, .finishUpload, .alertMsg {
   width: 684px;
   height: 386px;
   margin: 0 auto;
@@ -957,7 +1017,7 @@ body {
           box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
 }
 
-.crearGif .barraCrearGif, #srcObjetc .barraCrearGif, #srcObjetc .barraChequearGif {
+.crearGif .barraCrearGif, #srcObjetc .barraCrearGif, .finishUpload .barraCrearGif, .alertMsg .barraCrearGif, #srcObjetc .barraChequearGif, #srcObjetc .finishUpload .barraSubidoConExito, .finishUpload #srcObjetc .barraSubidoConExito, .finishUpload .barraSubidoConExito, #srcObjetc .alertMsg .barraAlertMsg, .alertMsg #srcObjetc .barraAlertMsg, .alertMsg .barraAlertMsg {
   background-image: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
   background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
   height: 24px;
@@ -967,55 +1027,55 @@ body {
   padding: 4px;
 }
 
-.crearGif .containerCrearGif, #srcObjetc .containerCrearGif {
+.crearGif .containerCrearGif, #srcObjetc .containerCrearGif, .finishUpload .containerCrearGif, .alertMsg .containerCrearGif {
   padding: 2rem;
 }
 
-.crearGif .containerCrearGif .iconTitleCrearGif, #srcObjetc .containerCrearGif .iconTitleCrearGif {
+.crearGif .containerCrearGif .iconTitleCrearGif, #srcObjetc .containerCrearGif .iconTitleCrearGif, .finishUpload .containerCrearGif .iconTitleCrearGif, .alertMsg .containerCrearGif .iconTitleCrearGif {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1rem;
 }
 
-.crearGif .containerCrearGif .iconTitleCrearGif img, #srcObjetc .containerCrearGif .iconTitleCrearGif img {
+.crearGif .containerCrearGif .iconTitleCrearGif img, #srcObjetc .containerCrearGif .iconTitleCrearGif img, .finishUpload .containerCrearGif .iconTitleCrearGif img, .alertMsg .containerCrearGif .iconTitleCrearGif img {
   margin-right: 1.5rem;
 }
 
-.crearGif .containerCrearGif .iconTitleCrearGif p, #srcObjetc .containerCrearGif .iconTitleCrearGif p {
+.crearGif .containerCrearGif .iconTitleCrearGif p, #srcObjetc .containerCrearGif .iconTitleCrearGif p, .finishUpload .containerCrearGif .iconTitleCrearGif p, .alertMsg .containerCrearGif .iconTitleCrearGif p {
   font-weight: bold;
   font-size: 16px;
   color: #110038;
 }
 
-.crearGif .containerCrearGif .listCrearGif, #srcObjetc .containerCrearGif .listCrearGif {
+.crearGif .containerCrearGif .listCrearGif, #srcObjetc .containerCrearGif .listCrearGif, .finishUpload .containerCrearGif .listCrearGif, .alertMsg .containerCrearGif .listCrearGif {
   margin-left: 3.5rem;
   font-size: 14px;
   color: #110038;
 }
 
-.crearGif .containerCrearGif .listCrearGif p, #srcObjetc .containerCrearGif .listCrearGif p {
+.crearGif .containerCrearGif .listCrearGif p, #srcObjetc .containerCrearGif .listCrearGif p, .finishUpload .containerCrearGif .listCrearGif p, .alertMsg .containerCrearGif .listCrearGif p {
   margin-bottom: 0.5rem;
 }
 
-.crearGif .containerCrearGif .listCrearGif .ulCrearGif li, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif li {
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif li, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif li, .finishUpload .containerCrearGif .listCrearGif .ulCrearGif li, .alertMsg .containerCrearGif .listCrearGif .ulCrearGif li {
   margin-bottom: 0.5rem;
   list-style: none;
 }
 
-.crearGif .containerCrearGif .listCrearGif .ulCrearGif .dot, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif .dot {
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif .dot, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif .dot, .finishUpload .containerCrearGif .listCrearGif .ulCrearGif .dot, .alertMsg .containerCrearGif .listCrearGif .ulCrearGif .dot {
   margin-right: 0.4rem;
 }
 
-.crearGif .containerCrearGif .listCrearGif .ulCrearGif:last-child, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif:last-child {
+.crearGif .containerCrearGif .listCrearGif .ulCrearGif:last-child, #srcObjetc .containerCrearGif .listCrearGif .ulCrearGif:last-child, .finishUpload .containerCrearGif .listCrearGif .ulCrearGif:last-child, .alertMsg .containerCrearGif .listCrearGif .ulCrearGif:last-child {
   margin-bottom: 0;
 }
 
-.crearGif .containerCrearGif .listCrearGif .boldCrearGif, #srcObjetc .containerCrearGif .listCrearGif .boldCrearGif {
+.crearGif .containerCrearGif .listCrearGif .boldCrearGif, #srcObjetc .containerCrearGif .listCrearGif .boldCrearGif, .finishUpload .containerCrearGif .listCrearGif .boldCrearGif, .alertMsg .containerCrearGif .listCrearGif .boldCrearGif {
   font-weight: bold;
 }
 
-.crearGif .containerCrearGif .listCrearGif .italic, #srcObjetc .containerCrearGif .listCrearGif .italic {
+.crearGif .containerCrearGif .listCrearGif .italic, #srcObjetc .containerCrearGif .listCrearGif .italic, .finishUpload .containerCrearGif .listCrearGif .italic, .alertMsg .containerCrearGif .listCrearGif .italic {
   font-style: italic;
 }
 
@@ -1156,6 +1216,10 @@ body {
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin-top: 1rem;
+  background: #F7C9F3;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  border: 1px solid #110038;
 }
 
 #srcObjetc .comenzarCaptura:hover .cameraSvg,
@@ -1166,11 +1230,9 @@ body {
 
 #srcObjetc .comenzarCaptura .cameraSvg {
   width: 36px;
-  background: #F7C9F3;
-  border: 1px solid #110038;
+  padding: 0.5rem;
   -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
           box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
-  padding: 0.5rem;
 }
 
 #srcObjetc .comenzarCaptura .capturar {
@@ -1178,8 +1240,6 @@ body {
   width: 144px;
   text-align: center;
   padding: 0.5rem;
-  background: #F7C9F3;
-  border: 1px solid #110038;
   -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
           box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
   cursor: pointer;
@@ -1205,6 +1265,10 @@ body {
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin-top: 1rem;
+  background: #FF6161;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
 }
 
 #srcObjetc .listoCaptura:hover .cameraSvg,
@@ -1216,8 +1280,6 @@ body {
 #srcObjetc .listoCaptura .listoSvg {
   width: 36px;
   padding: 0.5rem;
-  background: #FF6161;
-  border: 1px solid #110038;
   -webkit-box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
           box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
 }
@@ -1228,8 +1290,6 @@ body {
   padding: 0.5rem;
   cursor: pointer;
   color: #fff;
-  background: #FF6161;
-  border: 1px solid #110038;
   -webkit-box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
           box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
 }
@@ -1265,7 +1325,7 @@ body {
 }
 
 .barColor {
-  background: #F7C9F3 !important;
+  background: #F7C9F3;
 }
 
 #forward {
@@ -1288,7 +1348,6 @@ body {
 }
 
 .repetirSubir .repetir p {
-  text-decoration: none;
   color: #110038;
 }
 
@@ -1297,12 +1356,11 @@ body {
   margin-right: 0;
 }
 
-.repetirSubir .subir a {
-  text-decoration: none;
+.repetirSubir .subir p {
   color: #110038;
 }
 
-#cruzChequeo {
+.cruzChequeo {
   cursor: pointer;
 }
 
@@ -1346,7 +1404,7 @@ body {
   background: #B4B4B4;
 }
 
-.cancelarSubida {
+.cancelarSubida, .containerSubidoConExito .copiarEnlace, .containerSubidoConExito .descargarEnlace {
   width: 144px;
   height: 36px;
   background: #FFF4FD;
@@ -1359,12 +1417,216 @@ body {
   cursor: pointer;
 }
 
-.cancelarSubida p {
+.cancelarSubida p, .containerSubidoConExito .copiarEnlace p, .containerSubidoConExito .descargarEnlace p {
   text-decoration: none;
   color: #110038;
 }
 
 .textSubiendoGuifo {
   color: #d43535;
+}
+
+.finishUpload {
+  height: 391px;
+}
+
+.finishUpload .barraSubidoConExito {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.containerSubidoConExito {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.containerSubidoConExito #gifUploaded {
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  -webkit-box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+          box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+  background-position: center;
+  background-size: contain;
+  padding: 0.1rem;
+  margin-top: 2rem;
+  margin-left: 1.8rem;
+  width: 365px;
+  height: 191px;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1 / 3;
+}
+
+.containerSubidoConExito .containerButtons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[6];
+      grid-template-rows: repeat(6, 1fr);
+  height: calc(391px - 24px);
+  margin: 0 auto;
+}
+
+.containerSubidoConExito .textExito {
+  font-size: 16px;
+  color: #110038;
+  letter-spacing: 0;
+  line-height: 22px;
+  font-weight: bold;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.containerSubidoConExito .copiarEnlace {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  width: 256px;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+.containerSubidoConExito .copiarEnlace:hover {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+.containerSubidoConExito .descargarEnlace {
+  margin: 0;
+  margin-top: 0.5rem;
+  width: 256px;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+}
+
+.containerSubidoConExito .descargarEnlace:hover {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+.containerSubidoConExito .listoUpload {
+  width: 144px;
+  height: 36px;
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  text-align: center;
+  line-height: 36px;
+  grid-row: -2 / -1;
+  -ms-grid-column-align: end;
+      justify-self: end;
+  cursor: pointer;
+}
+
+.containerSubidoConExito .listoUpload:hover {
+  outline: 1px dotted #110038;
+  outline-offset: -4px;
+}
+
+.misGuifos {
+  height: 100vh;
+}
+
+.containerGifCreated {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  margin: 1rem auto 0 auto;
+  justify-items: center;
+  grid-auto-flow: row dense;
+  gap: 1rem;
+}
+
+.imgUp {
+  border: 1px solid #979797;
+  -webkit-box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+          box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+  padding: 0.1rem;
+  height: 200px;
+}
+
+.blurryBackground {
+  -webkit-filter: blur(0.2rem);
+          filter: blur(0.2rem);
+}
+
+.alertMsg {
+  height: 200px;
+  position: absolute;
+  top: 65%;
+  left: 25%;
+  -webkit-animation: grow 0.7s forwards normal;
+          animation: grow 0.7s forwards normal;
+  opacity: 0%;
+  -webkit-transition: all ease-in 0.5s;
+  transition: all ease-in 0.5s;
+}
+
+.alertMsg .barraAlertMsg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.alertMsg .containerAlertMsg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: calc(100% - 24px);
+}
+
+.alertMsg .containerAlertMsg .randomText {
+  font-size: 2rem;
+}
+
+.alertMsg .containerAlertMsg .attentionImg {
+  margin-right: 3rem;
+  height: 50px;
+}
+
+@-webkit-keyframes grow {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes grow {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

@@ -87,7 +87,9 @@
         border: 0.3px dotted #110038;
         
       }
-
+      a {
+        text-decoration: none;
+      }
       span {
         color: #110038;
         font-size: 16px;
@@ -99,7 +101,8 @@
         cursor: pointer;
         user-select: none;
         padding: 0.1rem;
-      
+        
+        
       }
 
       .border {

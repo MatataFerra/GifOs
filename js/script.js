@@ -65,9 +65,12 @@ inputSearch.addEventListener("keyup", () => {
     displayBoxSearch.lastChild.remove();
   }
 
-  if(charsetSearch.length > 1) {
-    sugSearch ()
-  }
+  setTimeout(()=>{
+
+    if(charsetSearch.length > 1) {
+      sugSearch ()
+    }
+  },1000)
 
   if(charsetSearch.length === 0){
     buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
@@ -128,7 +131,6 @@ function sugSearch () {
 
 //--Guardar palabra y crear botón--//
 
-
 function createButtonsFromArray () {
 
   if(alertMsg.style.display == "block"){
@@ -144,6 +146,9 @@ function createButtonsFromArray () {
 
   let blueButtonDone = document.createElement('div')
   blueButtonDone.classList.add("blueButtonDone");
+  if(document.body.classList.contains('darkThemeBody')){
+    blueButtonDone.classList.add("blueButtonDark");
+  }
   let viewMoreDone = document.createElement('div')
   viewMoreDone.classList.add('viewMoreDone');
   viewMoreDone.innerText = charsetSearch;
@@ -155,8 +160,6 @@ function createButtonsFromArray () {
   localStorage.setItem('searchArrayData', saveData);
 } 
 function loadData() {
-
-  
 
   if(localStorage.searchArrayData){
     
@@ -201,8 +204,6 @@ searchsDone.addEventListener('click', (e)=>{
 
 function getSearchResults() {
   createButtonsFromArray ()
-  let lupa = document.querySelector('.lupa');
-  lupa.style.display = "none";
   sugerencias.style.display = "none";
   tendencias.style.display = "none";
   displayBoxSearch.style.display = "none"
@@ -265,7 +266,8 @@ function apiSug() {
     "COVID-19",
     "snoop-dog",
     "Lollapalooza",
-    "Jimmy Fallon"
+    "Jimmy Fallon",
+    "Among us"
   ];
   let randomNumber = Math.floor(Math.random() * random.length);
   let randomWord = random[randomNumber];

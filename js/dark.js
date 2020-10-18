@@ -25,6 +25,7 @@ const myGifDarker = document.querySelector(".myGifDarker");
 const blueButtonSearch = document.getElementsByClassName('blueButtonDone');
 const blueButtonApi = document.getElementsByClassName('blueButton');
 
+
 //ID para Cambiar de Temas
 const darkTheme = document.getElementById("darkTheme");
 const dayTheme = document.getElementById("dayTheme");
@@ -99,8 +100,6 @@ if(document.body.id === "crearGifBody") {
   
 } 
 
-
-
 function themeSwith() {
 
   if (themeClick === darkTheme) {
@@ -141,8 +140,6 @@ function themeSwith() {
       elem.classList.add('blueButtonDark');
     }
 
-    
-
     searchWord.classList.add('searchWordDark');
     myGifDarker.classList.add('textDark');
     myGif.classList.add('myGifHoverDark');
@@ -169,6 +166,7 @@ function themeSwith() {
     });
     
   }
+
 
   //-----DAY THEME-----//
 
@@ -230,23 +228,43 @@ function themeSwith() {
   
 }
 
-
+//Dark en crearGif
 
 function themeSwithCreateGif () {
+  let arrayListoButton = [];
+  let arrayWhiteButtons = [];
+  let arrayRepetirYSubir = [];
+  let arrayBars = [];
 
   const barraCrearGif = document.querySelector('.barraCrearGif');
   const crearGif = document.getElementById('crearGif');
   const cancelarButton = document.getElementById('cancelarButton');
   const comenzarButton = document.getElementById('comenzarButton');
   const barraChequearGif = document.querySelector('.barraChequearGif')
-  const srcObjetc = document.getElementById('srcObjetc')
+  const srcObjetc = document.getElementById('srcObjetc');
+
+  const comenzarCaptura = document.querySelector('.comenzarCaptura')
+  const listoCaptura = document.getElementById('listoCaptura');
+  const forward = document.getElementById('forward');
+  const barColor = document.getElementsByClassName('barColor');
+  const repetir = document.getElementById('repetir');
+  const subir = document.getElementById('subir');
+
+  const progressBar = document.getElementById('progressBar');
+  const uploadProgressBar = document.getElementById('uploadProgressBar')
+
   arrayBackgroundYLetrasDark.push(tittleBgBar, barraCrearGif, barraChequearGif);
   arrayBoxDark.push(crearGif, srcObjetc)
+  arrayButtonDark.push(comenzarCaptura, forward);
+  arrayListoButton.push(listoCaptura);
+  arrayWhiteButtons.push(cancelarButton);
+  arrayRepetirYSubir.push(repetir, subir);
+  arrayBars.push(progressBar, uploadProgressBar)
 
   if (JSON.parse(themeClick) === "darkTheme") {
     crearGifBody.classList.add("darkThemeBody");
     logo.src = "./assets/gifOF_logo_dark.png";
-    cancelarButton.classList.add('cancelarGifDark');
+    
     comenzarButton.classList.add('comenzarGifDark')
 
     for (let elem of arrayBackgroundYLetrasDark) {
@@ -256,6 +274,32 @@ function themeSwithCreateGif () {
     for (let elem of arrayBoxDark) {
       elem.classList.add("boxDark");
     }
+
+    for (let elem of arrayButtonDark) {
+      elem.classList.add('buttonDarkCrearGif');
+    }
+
+    for (let elem of arrayListoButton) {
+      elem.classList.add('listoCapturaDark')
+    }
+
+    for(let elem of arrayWhiteButtons){
+      elem.classList.add('cancelarGifDark');
+    }
+
+    for(let elem of arrayRepetirYSubir){
+      elem.classList.add('repetirYSubirDark');
+    }
+
+    for(let elem of arrayBars){
+      elem.classList.add('progressBarDark');
+    }
+
+    setTimeout(()=>{
+      for (let elem of barColor){
+        elem.classList.add('barColorDark')
+      }
+    },100)
     
   } 
   
@@ -268,6 +312,10 @@ function themeSwithCreateGif () {
 
     for (let elem of arrayBackgroundYLetrasDark) {
       elem.classList.remove("backgroundYLetrasDark");
+    }
+
+    for(let elem of arrayBars){
+      elem.classList.remove('progressBarDark');
     }
   }
 }
