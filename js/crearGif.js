@@ -543,6 +543,9 @@ let doneFinish = () => {
     imgUp.classList.add('imgUp')
     imgUp.src = linkStorage;
     containerGifCreated.appendChild(imgUp)
+    
+    const conteinerIfNoneGif = document.getElementById('conteinerIfNoneGif')
+    conteinerIfNoneGif.style.display = 'none'
 
 }
 
@@ -564,6 +567,11 @@ function loadStorage ()  {
 //Comprobar si hay elementos en el LS
 if(localStorage.gifCreate) {
     loadStorage();
+} else {
+    if(gifArray.length == 0){
+        const conteinerIfNoneGif = document.getElementById('conteinerIfNoneGif');
+        conteinerIfNoneGif.style.display = 'block';
+    }
 }
 
 //Función para bajarse el Gif creado
@@ -670,5 +678,6 @@ let abortingButton = new Button('cancelarSubida', aborting);
 let downloadButton = new Button('descargarEnlace', downloadCreatedGif);
 let copyLinkButton = new Button('copiarEnlace', copyLinkOfGif);
 let finishUpButton = new Button('listoUpload', doneFinish);
+let ifNoneGifButton = new Button('ifNoneGif', testCamera);
 
 

@@ -10,7 +10,9 @@ const searchBox = document.getElementById("searchBox");
 const displayBoxSearch = document.getElementById("displayBoxSearch");
 const searchContainer = document.querySelector(".searchContainer");
 const searchWord = document.querySelector(".searchWord");
+const lupaImg = document.getElementById('lupaImg')
 let charsetSearch = "";
+let chars = false;
 //IDs del main
 const sugerencias = document.getElementById("sugerencias");
 const tendencias = document.getElementById("tendencias");
@@ -48,6 +50,10 @@ document.addEventListener("click", function (e) {
   let clic = e.target;
   if (themeContainer.style.visibility == "visible" && clic != themeContainer) {
     themeContainer.style.visibility = "hidden";
+    if(inputSearch.value){
+      chars = true;
+      searchButtonColor()
+    }
   }
 });
 //-------------------------------FIN Desplegar botón con temas--------------------------------------//
@@ -56,8 +62,6 @@ document.addEventListener("click", function (e) {
 //--Haciendo que el input guarde la palabra a buscar--//
 inputSearch.addEventListener("keyup", () => {
   charsetSearch = inputSearch.value.trim();
-  buttonSearch.classList.replace("buttonSearch", "buttonHoverColor");
-  searchWord.classList.add("searchWordHover");
   displayBoxSearch.style.display = "block";
 
   //Agrega ejemplos de búsqueda, al hacer click debería buscarlos
@@ -65,17 +69,7 @@ inputSearch.addEventListener("keyup", () => {
     displayBoxSearch.lastChild.remove();
   }
 
-  setTimeout(()=>{
-
-    if(charsetSearch.length > 1) {
-      sugSearch ()
-    }
-  },1000)
-
-  if(charsetSearch.length === 0){
-    buttonSearch.classList.replace("buttonHoverColor", "buttonSearch");
-    searchWord.classList.remove("searchWordHover");
-  }
+  searchButtonColor()
 
   if((buttonSearch.classList.contains('buttonHoverColor') || buttonSearch.classList.contains('buttonHoverColorDark')) &&  charsetSearch != ""){
     buttonSearch.addEventListener("click", getSearchResults);
@@ -85,6 +79,55 @@ inputSearch.addEventListener("keyup", () => {
     
   }
 });
+
+let searchButtonColor = async () =>{
+  //Si hay caracteres tiene que estar con color y activado
+  if(charsetSearch.length >= 1 || chars == true){
+    if (themeClick === darkTheme){
+      buttonSearch.classList.remove('buttonHoverColor');
+      buttonSearch.classList.remove('buttonSearch');
+      buttonSearch.classList.remove("boxDark");
+      buttonSearch.classList.add('buttonHoverColorDark')
+      lupaImg.src = './assets/lupa_light.svg'
+      chars = false;
+    } else if (themeClick === dayTheme) {
+      buttonSearch.classList.remove("boxDark");
+      buttonSearch.classList.add('buttonSearch');
+      buttonSearch.classList.add('buttonHoverColor');
+      buttonSearch.classList.remove("buttonHoverColorDark");
+      searchWord.classList.add("searchWordHover");
+      lupaImg.src = './assets/lupa.svg'
+      chars = false;
+    }
+
+    await sugSearch ();
+  }
+  
+  //Si no tiene caracteres tiene que estar opaco y desactivado
+  if(charsetSearch.length == 0 || chars == true){
+    buttonSearch.classList.remove("buttonHoverColor");
+    buttonSearch.classList.add('buttonSearch');
+    searchWord.classList.remove("searchWordHover");
+    
+    if (themeClick === darkTheme){
+      buttonSearch.classList.add('buttonSearch');
+      buttonSearch.classList.add("boxDark");
+      buttonSearch.classList.remove('buttonHoverColorDark')
+      lupaImg.src = './assets/Combined_Shape.svg';
+      
+      chars = false;
+    } else if (themeClick === dayTheme) {
+      buttonSearch.classList.replace(
+        "buttonHoverColorDark",
+        "boxDark"
+      );
+      lupaImg.src = './assets/lupa_inactive.svg';
+      searchWord.classList.remove("searchWordHover");
+      chars = false;
+    }
+    
+  }
+}
 
 //-- FIN Haciendo que el input guarde la palabra a buscar--//
 
@@ -214,7 +257,7 @@ function getSearchResults() {
       charsetSearch +
       "&api_key=" +
       APIKEY +
-      "&limit=10"
+      "&limit=18"
   )
     .then((response) => {
       return response.json();
@@ -237,7 +280,7 @@ function getSearchResults() {
         }
 
         let gifapi = document.getElementsByClassName('apiGif');
-        for(i = 5; i < gifapi.length; i++){
+        for(i = 3; i < gifapi.length; i++){
           if(i % 2 != 0){
             gifapi[i].classList.add("apiGif-1");
           } 
@@ -342,7 +385,7 @@ apiSug();
 //---------------------------API Trend-------------------------//
 
 function apiTrend() {
-  let limit = 25;
+  let limit = 60;
   const found = fetch(
     "https://api.giphy.com/v1/gifs/trending?" +
       "&api_key=" +
@@ -389,7 +432,7 @@ function apiTrend() {
 
         //Creando Grids
         let trendConteiner = document.getElementsByClassName('trendConteiner');
-        for(let i = 3; i < trendConteiner.length; i++){
+        for(let i = 1; i < trendConteiner.length; i++){
           if(i % 2 != 0){
             trendConteiner[i].classList.add("apiGif-1");
           }

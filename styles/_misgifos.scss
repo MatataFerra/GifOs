@@ -1,0 +1,21 @@
+.conteinerIfNoneGif{
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+
+    .alignText{
+        font-size: 1.5rem;
+    }
+    a {
+        text-decoration: none;
+        color: #4180F6;
+        font-size: 1.5rem;
+        transition: all .1s ease-in-out;
+        cursor: pointer;
+
+        &:active,
+        &:hover{
+            color: #d43535;
+        }
+    }
+}

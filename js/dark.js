@@ -58,11 +58,9 @@ if(document.body.id === "darkThemeBody") {
   }
 
   function darkThemeON(e) {
-
     e.preventDefault();
     themeClick = e.target;
     //Local Storage
-
     if(themeClick === dayTheme) {
       saveTheme = themeClick.id;
       localStorage.setItem('themeSave', saveTheme);
@@ -70,20 +68,9 @@ if(document.body.id === "darkThemeBody") {
       saveTheme = themeClick.id;
       localStorage.setItem('themeSave', saveTheme);
     }
-
     //FIN Local Storage
-    
+
     themeSwith();
-
-    if(charsetSearch.length && themeClick === dayTheme) {
-      buttonSearch.classList.replace('buttonHoverColorDark', 'buttonHoverColor')
-    }
-
-    if(charsetSearch.length && themeClick === darkTheme) {
-      buttonSearch.classList.replace('buttonHoverColor', 'buttonHoverColorDark');
-      buttonSearch.classList.remove('boxDark');
-    }
-
   }
 
   if(themeClick) {
@@ -96,6 +83,15 @@ if(document.body.id === "crearGifBody") {
     let loadDataTheme = localStorage.getItem('themeSave');
     themeClick = JSON.stringify(loadDataTheme);
     themeSwithCreateGif();
+  }
+  
+} 
+
+if(document.body.id === "misGifos") {
+  if(localStorage.themeSave) {
+    let loadDataTheme = localStorage.getItem('themeSave');
+    themeClick = JSON.stringify(loadDataTheme);
+    themeSwithMisGifos();
   }
   
 } 
@@ -145,28 +141,10 @@ function themeSwith() {
     myGif.classList.add('myGifHoverDark');
     borderLine.classList.add('borderDark');
     
-    logo.setAttribute("src", "./assets/gifOF_logo_dark.png");
-    
-    inputSearch.addEventListener("keyup", () => {
-
-      buttonSearch.classList.remove('buttonHoverColor');
-      buttonSearch.classList.replace(
-        "boxDark",
-        "buttonHoverColorDark"
-      );
-
-      if(charsetSearch.length == 0) {
-        buttonSearch.classList.replace(
-          "buttonHoverColorDark",
-          "boxDark"
-        );
-
-        buttonSearch.classList.add('buttonSearch')
-      }
-    });
+    logo.src = "./assets/gifOF_logo_dark.png";
+    lupaImg.src = './assets/Combined_Shape.svg';
     
   }
-
 
   //-----DAY THEME-----//
 
@@ -212,16 +190,6 @@ function themeSwith() {
     borderLine.classList.remove('borderDark');
     
     logo.setAttribute("src", "./assets/gifOF_logo.png");
-    
-    inputSearch.addEventListener("keyup", () => {
-      buttonSearch.classList.add('buttonHoverColor');
-      buttonSearch.classList.replace(
-        "buttonHoverColorDark",
-        "boxDark"
-      );
-
-      
-    });
 
   }
 
@@ -264,6 +232,7 @@ function themeSwithCreateGif () {
   if (JSON.parse(themeClick) === "darkTheme") {
     crearGifBody.classList.add("darkThemeBody");
     logo.src = "./assets/gifOF_logo_dark.png";
+    alignText.classList.add('alignTextDark')
     
     comenzarButton.classList.add('comenzarGifDark')
 
@@ -306,6 +275,7 @@ function themeSwithCreateGif () {
   if (JSON.parse(themeClick) === "dayTheme") {
     crearGifBody.classList.remove("darkThemeBody");
     logo.src = "./assets/gifOF_logo.png";
+    alignText.classList.remove('alignTextDark')
 
     cancelarButton.classList.remove('cancelarGifDark');
     comenzarButton.classList.remove('comenzarGifDark')
@@ -320,6 +290,30 @@ function themeSwithCreateGif () {
   }
 }
 
+function themeSwithMisGifos (){
+  const misGifos = document.body;
+  arrayBackgroundYLetrasDark.push(tittleBgBar)
+  const alignText = document.querySelector('#alignText');
+  if (JSON.parse(themeClick) === "darkTheme"){
+    misGifos.classList.add("darkThemeBody");
+    logo.src = "./assets/gifOF_logo_dark.png";
+    alignText.classList.add('alignTextDark')
 
+    for (let elem of arrayBackgroundYLetrasDark) {
+      elem.classList.add("backgroundYLetrasDark");
+    }
+
+  }
+
+  if (JSON.parse(themeClick) === "dayTheme") {
+    misGifos.classList.remove("darkThemeBody");
+    logo.src = "./assets/gifOF_logo.png";
+    alignText.classList.remove('alignTextDark')
+
+    for (let elem of arrayBackgroundYLetrasDark) {
+      elem.classList.remove("backgroundYLetrasDark");
+    }
+  }
+}
 
 //-------------------------------FIN Dark Theme--------------------------------------//
