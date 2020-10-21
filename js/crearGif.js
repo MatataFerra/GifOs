@@ -673,6 +673,7 @@ let buttonStop = new Button('listo', stopRecord);
 let buttonDelete = new Button('repetir', deleteRecord);
 let forwardButton = new Button('forward', playRecord);
 let closeButton = new Button('cruzChequeo', close);
+let closeButtonTwo = new Button('cruzChequeoDos', close);
 let uploadedButton = new Button('subir', upload);
 let abortingButton = new Button('cancelarSubida', aborting);
 let downloadButton = new Button('descargarEnlace', downloadCreatedGif);
