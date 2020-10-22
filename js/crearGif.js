@@ -217,6 +217,8 @@ let startRecord  = () => {
             timerInit.timer.style.visibility = 'visible';
             
             barraTexto.innerText = "Capturando Tu Guifo"
+
+            closeButtonTwo.addListener(close)
     });
 
 };
@@ -390,6 +392,8 @@ let upload = () => {
     abortingButton.removeListener(close);
     abortingButton.addListener(aborting);
 
+    closeButtonTwo.removeListener(close)
+
     Progress.eliminateAll('progressBar');
     Progress.loopProgressBar('uploadProgressBar', 23);
     Progress.reduceProgressBar('uploadProgressBar', 23);
@@ -430,6 +434,8 @@ let upload = () => {
                 const gifUploaded = document.getElementById('gifUploaded');
                 link = res.data.images.original.url;
                 gifUploaded.src = link;
+
+                saveLocalStorage();
 
             })
             .catch(err => {
@@ -533,11 +539,10 @@ let doneFinish = () => {
 
     Progress.eliminateAll('uploadProgressBar');
 
+    //saveLocalStorage()
+
     let linkStorage = link;
-    gifArray.push(linkStorage)
-    let gifArrayString = JSON.stringify(gifArray);
-    localStorage.setItem('gifCreate', gifArrayString)
-    
+
     const containerGifCreated = document.getElementById('containerGifCreated');
     let imgUp = document.createElement('img');
     imgUp.classList.add('imgUp')
@@ -547,6 +552,17 @@ let doneFinish = () => {
     const conteinerIfNoneGif = document.getElementById('conteinerIfNoneGif')
     conteinerIfNoneGif.style.display = 'none'
 
+    
+
+}
+
+//Salvar en el local
+
+let saveLocalStorage = () =>{
+    let linkStorage = link;
+    gifArray.push(linkStorage)
+    let gifArrayString = JSON.stringify(gifArray);
+    localStorage.setItem('gifCreate', gifArrayString)
 }
 
 //Carga del Local Storage

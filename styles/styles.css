@@ -1552,8 +1552,8 @@ body {
 .containerGifCreated {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(250px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin: 1rem auto 0 auto;
   justify-items: center;
   grid-auto-flow: row dense;
